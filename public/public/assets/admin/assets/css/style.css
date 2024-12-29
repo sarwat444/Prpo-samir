@@ -1,0 +1,172 @@
+/* Start  Login  Design */
+.form-form .form-form-wrap h1 .brand-name
+{
+    color: #fe2b50;
+}
+
+    .gold {
+        border: 0;
+        border-bottom: 1px solid #dcb24a;
+        border-radius: 0;
+    }
+
+    .gold:focus {
+    background: #fff6e4;
+    box-shadow: none;
+    transition: .3s;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+    }
+
+    .check {
+        background: #f6e9db;
+        color: #3e3e3e;
+    }
+
+    .image-swatches-nav li a img {
+        height: 50px;
+        object-fit: contain;
+    }
+
+    li.tab__item.nav-item {
+        margin-bottom: 10px;
+    }
+
+    .card {
+        border-radius: 0;
+    }
+
+    .card-header {
+        padding: .1rem .75rem;
+        background-color: rgb(255 255 255 / 3%);
+        border-bottom: 1px solid rgba(0,0,0,.125);
+    }
+
+    /* .tab-text {
+        position: absolute;
+        top: 73px;
+        left: 140px;
+    } */
+
+    .modal-backdrop {
+        background-color: transparent;
+        z-index: 0;
+    }
+
+  }
+
+
+
+.notfi {
+display: flex;
+align-items: center;
+color: #AB47BC;
+/*height: 60px;*/
+position: relative;
+border-bottom: 1px solid #495057
+}
+
+
+    .notfi a {
+    text-decoration: none;
+}
+#notfi-box {
+    z-index : 9999;
+    width : 400px !important;
+    min-height : 300px !important;
+    height: 0px !important;
+     overflow-y: scroll !important;
+      overflow-x: hidden !important;
+
+}
+
+.notfi-icon {
+    cursor: pointer;
+    margin-right: 50px;
+    line-height: 60px
+}
+
+.notfi-icon span {
+    background: #f00;
+    padding: 7px;
+    border-radius: 50%;
+    color: #fff;
+    vertical-align: top;
+    margin-left: -25px
+}
+
+.notfi-icon img {
+    display: inline-block;
+    width: 26px;
+    margin-top: 4px
+}
+
+.notfi-icon:hover {
+    opacity: .7
+}
+
+.notfi-logo {
+    flex: 1;
+    margin-left: 50px;
+    color: #eee;
+    font-size: 20px;
+    font-family: monospace
+}
+
+.notfi-notifications {
+    width: 300px;
+    height: 0px;
+    opacity: 0;
+    position: absolute;
+    top: 63px;
+    right: 62px;
+    border-radius: 5px 0px 5px 5px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+.notfi-notifications h2 {
+    font-size: 14px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    color: #999
+}
+
+.notfi-notifications h2 span {
+    color: #f00
+}
+
+.notfi-notifications-item {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 6px 9px;
+    margin-bottom: 0px;
+    cursor: pointer;
+
+}
+
+.notfi-notifications-item:hover {
+    background-color: #eee
+}
+
+.notfi-notifications-item img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-right: 9px;
+    border-radius: 50%;
+    margin-top: 2px
+}
+
+.notfi-notifications-item .text h4 {
+    color: #777;
+    font-size: 16px;
+    margin-top: 3px
+}
+
+.notfi-notifications-item .text p {
+    color: #777 !important;
+
+}

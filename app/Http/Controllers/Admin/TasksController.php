@@ -26,6 +26,7 @@ use App\Models\Tag;
 use App\Models\Replay;
 use App\Models\TaskTag;
 use Image;
+use Carbon\Carbon ;
 
 class TasksController extends Controller
 {
@@ -533,9 +534,36 @@ class TasksController extends Controller
         }
 
     }
+    //show idea Task Data
+    public function showIdeaTaskData(Request $request)
+    {
+        $id = $request->id;
+        $task = Task::find($id);
+        return view('admin.tasks.ideen_create', ['task' => $task]);
+    }
 
+    public function updateIdeaTask(Request $request, $id)
+    {
+        $request->validate([
+            'task_title' => 'required|string|max:255',
+            'task_due_date' => 'required|date',
+            'task_desc' => 'nullable|string',
+        ]);
+
+        // Convert `task_due_date` to Y-m-d format
+        $formattedDate = Carbon::createFromFormat('d.m.Y', $request->task_due_date)->format('Y-m-d');
+
+        $task = Task::findOrFail($id);
+
+        $task->update([
+            'task_title' => $request->task_title,
+            'task_due_date' => $formattedDate, // Use the formatted date
+            'task_desc' => $request->task_desc,
+        ]);
+
+        return redirect()->route('admin.dashboard')->with('success', 'Idea Updated Successfully');
+    }
     // getCreateView
-
     public function getCreateView(Request $request)
     {
         $type = $request->type;
@@ -2052,7 +2080,6 @@ class TasksController extends Controller
          {
              $tasks  = Task::with('category')->where(['task_status' =>$request->task_status])->get() ;
          }
-
         $data = view('admin.tasks.fillter_myposts', compact('tasks'))->render();
         return response()->json(['options' => $data ]);
     }

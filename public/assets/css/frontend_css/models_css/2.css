@@ -1,0 +1,266 @@
+/*Start  Main Modal Design */
+/* Editor Design */
+@media (min-width: 992px)
+{
+  .modal-lg, .modal-xl {
+      max-width: 80%;
+  }
+}
+.editor .modal-content
+{
+  border-radius: 0;
+  border:0 ;
+  background-color: #fff;
+}
+.editor .main-mug
+{ 
+    height: 263px;
+    width: 320px;
+    transform: translate(50%, 50%);
+}
+.editor .modal-content .modal-header
+{
+  border:0 ;
+}
+.editor .modal-content .mug-modal
+{
+  width: 100%;
+}
+.editor .modal-content .mug-modal img
+{
+   width: 100%;
+   transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -webkit-transform: scale(1.4);
+}
+
+.editor .card
+{
+  margin: 0 auto;
+  width: 70%;
+  border: 0;
+  margin-bottom: 6px;
+  border-radius: 0;
+}
+.editor .card .card-body
+{
+
+border-left: 1px solid #e9ecef;
+border-right: 1px solid #e9ecef;
+}
+.editor .card .card-header
+{
+  border: 0;
+  text-align: left;
+  background-color: #eee;
+  padding: 1px;
+  background-color: #fff;
+  box-shadow: 2px 4px 10px #2125291f;
+  border: 1px solid #eee;
+}
+.modal-header .close 
+{
+  font-size: 40px ;
+}
+.editor .card .card-header .btn-link
+{
+  text-decoration: none ;
+  color: #000;
+  
+}
+.editor .card .card-header .btn-link:focus
+{
+  box-shadow:none ;
+}
+.editor .card .card-header h4{
+  font-size: 17px;
+}
+.editor .card .list-images ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.editor .card .list-images ul li 
+{
+  height: 50px;
+  width: 50px;
+  padding: 4px;
+  border: 1px solid #adb5bd;
+  border-radius: 4px;
+  display: inline-block;
+}
+.editor .card .list-images ul li:hover{
+  cursor: pointer;
+  border: 2px solid #f5b908 ;
+}
+.editor .card .list-images ul li:last-child
+{
+
+  color: #f90606;
+    text-align: center;
+    padding-top: 10px;
+}
+.editor .card .list-images ul img 
+{
+height: 100%;
+width: 100% ;
+}
+
+.editor  .mug-modal
+{
+  position: relative ;
+}
+.editor  .mug-modal #typed p{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -208%);
+}
+.editor  .mug-modal .hinterground
+{
+  width: 49%;
+  height: 51%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -27%);
+
+}
+
+.editor  .mug-modal .Körper
+{
+  width: 28%;
+  height: 26%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -24%);
+
+}
+.editor  .mug-modal .Unbenannt
+{
+  width: 7%;
+  height: 11%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(30%, -30%);
+
+}
+.editor  .mug-modal .Unbenannt2
+{
+  width: 7%;
+  height: 11%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-189%, -22%);
+
+}
+.editor  .mug-modal .jeans
+{
+  width: 8%;
+  height: 15%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(12%, 143%);
+}
+.editor  .mug-modal .jeans2
+{
+  width: 8%;
+  height: 15%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-168%, 134%);
+}
+.editor  .mug-modal .spruch
+{
+  width: 36%;
+  height: 27%;
+  position: absolute;
+  bottom: 30px;
+  left: 33%;
+  bottom: 125px;
+}
+
+.editor  .mug-modal .hinterground  img,
+.editor  .mug-modal .Körper img ,
+.editor  .mug-modal .Unbenannt img ,
+.editor  .mug-modal .Unbenannt2 img ,
+.editor  .mug-modal .jeans img ,
+.editor  .mug-modal .jeans2 img ,
+.editor  .mug-modal .spruch img
+{
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+
+
+.button-group
+{
+  position: relative;
+  text-align: center;
+  margin-top: 33px;
+}
+.button-group .btn
+{
+  border-radius: 0;
+  background-color: #f5b908;
+  color: #000;
+  border:0 ;
+  font-size: 15px ;
+}
+/* Editor Design */
+/* Start  Couple Model */
+.couplempodel  .mug-modal .hinterground {
+    width: 41%;
+    height: 93%;
+    position: absolute;
+    top: 50%;
+    left: 53%;
+    transform: translate(-47%, 6%);
+}
+.couplempodel  .mug-modal .mann
+{
+    width: 28%;
+    height: 33%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, 183%);
+
+}
+.couplempodel  .mug-modal .frau
+{
+    width: 18%;
+    height: 128%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-5%, 51%);
+
+}
+.couplempodel  .mug-modal .Unbenannt
+{
+    width: 6%;
+    height: 16%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(67%, 369%) rotate( 
+344deg);
+
+}
+.editor  .mug-modal #coupletyped p{
+    position: absolute;
+    height: 100px;
+    width: 162px;
+    transform: translate(116%, -138%);
+    line-height: 40px;
+}
+/* End Couple Model */

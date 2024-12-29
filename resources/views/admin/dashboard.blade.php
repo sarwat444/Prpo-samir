@@ -85,8 +85,6 @@
                         <div class="category-lists-slider">
                             <div class="swiper-container" id="catgory-slider">
                                 <div class="swiper-wrapper" id="swiper">
-
-
                                     @if(!empty($users))
                                         @foreach($users as $user)
                                             <div class="swiper-slide cat_list">
@@ -165,7 +163,7 @@
                                             <br>
                                             <div class="members">
                                                 <ul>
-                                                    <button class="btn btn-default btn-task-popup" data-id="{{$task->id}}"><i class="fa fa-plus"></i></button>
+                                                    <button class="btn btn-default btn-idea-popup" data-id="{{$task->id}}"><i class="fa fa-plus"></i></button>
                                                 </ul>
                                             </div>
                                         </div>
@@ -174,16 +172,13 @@
 
                                                 <div class="col-md-6">
                                                     @if(!empty($task->added_by))
-
                                                         @if(file_exists(public_path().'/assets/images/users/'.$task->added_by->image))
-                                                            <img src="{{asset('public/assets/images/users/'.$task->added_by->image)}}"
-                                                                 alt="member">
+                                                            <img src="{{asset('public/assets/images/users/'.$task->added_by->image)}}" alt="member">
                                                         @else
                                                             <img src="https://source.unsplash.com/user/c_v_r">
                                                         @endif
 
                                                     @endif
-                                                    <span> {{--!empty($task->added_by->user_name) ? $task->added_by->user_name :' ' --}} Erstellt von </span>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p> {{ date('d.m.Y', strtotime($task->task_due_date))}} </p>

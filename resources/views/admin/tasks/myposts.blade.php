@@ -50,38 +50,42 @@
 @endsection
 @section('title'){{$title}}@endsection
 @section('content')
-    <div class="container-fluid">
-        <div class="cards mytasks" id="cards">
-            @if(Auth::user()->role == 1 )
-                <div class="fillter">
-                    <div class="row justify-content-center">
-                            <div class="col-md-2">
-                                <div class="form-control">
-                                    <select name="users" id="subtasks_users" is="ms-dropdown" data-type="user_filter"  data-gender="list" data-enable-auto-filter="true" required>
-                                        @foreach($users as $user)
-                                            <option value="{{$user->id}}" @if(Auth::user()->id  == $user->id)  selected @endif data-image="{{asset('public/assets/images/users/'.$user->image)}}">{{$user->user_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <select class="form-control task_status" id="task_status">
-                                    <option value="0"> {{__('messages.pending')}} </option>
-                                    <option value="1"> {{__('messages.completed')}} </option>
-                                    <option value="2"> {{__('messages.deleted')}} </option>
-                                </select>
-                            </div>
-                            <div class="col-md-1">
-                                <div class="search_filter">
-                                    <button class="search-btn"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-11">
+                <div class="cards mytasks" id="cards" style="padding: 0 !important;">
+                    @if(Auth::user()->role == 1 )
+                        <div class="fillter">
+                            <div class="row justify-content-center">
+                                    <div class="col-md-2">
+                                        <div class="form-control">
+                                            <select name="users" id="subtasks_users" is="ms-dropdown" data-type="user_filter"  data-gender="list" data-enable-auto-filter="true" required>
+                                                @foreach($users as $user)
+                                                    <option value="{{$user->id}}" @if(Auth::user()->id  == $user->id)  selected @endif data-image="{{asset('public/assets/images/users/'.$user->image)}}">{{$user->user_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-control task_status" id="task_status">
+                                            <option value="0"> {{__('messages.pending')}} </option>
+                                            <option value="1"> {{__('messages.completed')}} </option>
+                                            <option value="2"> {{__('messages.deleted')}} </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="search_filter">
+                                            <button class="search-btn"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
 
-                    </div>
+                            </div>
+                        </div>
                 </div>
+                </div>
+            </div>
             @endif
             <div class="row justify-content-center">
-                <div class="col-md-12">
+                <div class="col-md-11">
                     <div class="row sortable-cards filtered_data" id="shuffle">
                         @if(!empty($tasks))
                              @foreach ($tasks as $key => $task)

@@ -1,0 +1,244 @@
+@font-face {
+  font-family: 'Inter';
+  font-weight: 300;
+  src: url('fonts/inter-light.woff2') format('woff2'),
+       url('fonts/inter-light.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  src: url('fonts/inter-regular.woff2') format('woff2'),
+       url('fonts/inter-regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 500;
+  src: url('fonts/inter-medium.woff2') format('woff2'),
+       url('fonts/inter-medium.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 600;
+  src: url('fonts/inter-semibold.woff2') format('woff2'),
+       url('fonts/inter-semibold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 800;
+  src: url('fonts/inter-bold.woff2') format('woff2'),
+       url('fonts/inter-bold.woff') format('woff');
+  font-display: swap;
+}
+
+.upload-icon, .record-icon {
+    cursor: pointer;
+    margin-right: 15px; /* Adjust as necessary */
+}
+
+.record-icon {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 24px; /* Adjust as necessary */
+}
+
+.loading-indicator {
+    display: flex;
+    align-items: center;
+}
+.loading-text {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #555; /* Change color as needed */
+}
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-top: 2px solid #3498db; /* Change color as needed */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#recordButton
+{
+    background-color: transparent;
+    border: 0;
+    color: #1b5b96;
+    font-size: 20px;
+    padding: 0;
+}
+.upload-icon i{
+    background-color: transparent;
+    border: 0;
+    color: #1b5b96;
+    font-size: 20px;
+    margin-top: 7px;
+}
+#recordButton:focus {
+    outline: none;
+    box-shadow:none ;
+}
+/* Recording Button Icon Style */
+#recordButton .fa-record-vinyl {
+    color: #f00 !important;
+    animation: scalePulse 1s infinite ease-in-out;
+}
+
+/* Animation Keyframes for Scaling Up and Down */
+@keyframes scalePulse {
+    0%, 100% {
+        transform: scale(1); /* Normal size */
+    }
+    50% {
+        transform: scale(1.2); /* Slightly larger */
+    }
+}
+
+#deleteRecording {
+    background-color: #f2f3f4 !important;
+    border: 0;
+    padding: 4px;
+    width: 51px;
+    width: 30px;
+    border-radius: 60%;
+    margin-left: 6px;
+    height: 30px;
+    border-color: #333;
+    margin-top: 22px;
+    margin-right: 9px;
+    color: #f00;
+}
+#deleteRecording i{
+    font-size :15px ;
+}
+#deleteRecording:focus {
+    outline: none;
+    box-shadow:none ;
+}
+#sendRecording
+{
+    background-color: #1b5b96 !important;
+    border: 0;
+    color: #ff;
+    padding: 4px;
+    width: 51px;
+    width: 30px;
+    border-radius: 60%;
+    margin-left: 7px;
+    height: 30px;
+    border-color: #333;
+    margin-top: 22px;
+}
+#sendRecording:focus
+{
+    outline: none;
+    box-shadow:none ;
+}
+#sendRecording .fa-paper-plane:before {
+    background-color: #ffff;
+    border-radius: 50%;
+    padding: 12px;
+    font-size: 21px;
+}
+
+.upload-icon, .record-icon {
+    cursor: pointer;
+    margin-right: 15px;
+}
+#audioPreview audio
+{
+    height:35px;
+    margin-top: 8px;
+}
+#sendRecording .fa-paper-plane:before
+{
+    border-radius: 50%;
+    padding: 12px;
+    font-size: 13px;
+
+}
+.contact_info
+{
+    visibility: hidden;
+}
+.chat-footer
+{
+    visibility: hidden;
+}
+.popup-media img
+{
+    height: 200px !important;
+    object-fit: contain !important;
+    width: 100% !important;
+}
+.interface h1
+{
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 39px;
+    color: #1b5b96;
+    margin-bottom: 36px;
+}
+.interface p{
+    font-size: 17px;
+    color: #6f6f6f;
+}
+.interface p span
+{
+    color: #1b5b96 ;
+    font-weight: bold;
+}
+.interface img
+{
+    height: 219px;
+    margin-top: 36px;
+}
+.badge-primary {
+    color: #fff;
+    background-color: #1b5b96 !important;
+}
+.user_groups
+{
+    max-height: 500px !important;
+    overflow-y: scroll;
+}
+.self .file_doc
+{
+    color: #fff;
+}
+.file-link
+{
+    color: #ffffff;
+}
+.file-preview
+{
+    display: flex;
+}
+.file-preview i{
+    margin-right: 10px;
+}
+.message-content span
+{
+    color: #1b5b96;;
+}
+.self .message-content span
+{
+    color: #fff;
+}
+textarea.form-control
+{
+    min-height: 150px;
+}
+

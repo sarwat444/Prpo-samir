@@ -90,8 +90,6 @@
                         </p>
                   </div>
                 </div>
-
-
                  @foreach($user_subtasks as $subtask)
                    <div class="row task">
                       <div class="col-md-1">

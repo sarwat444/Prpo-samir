@@ -100,6 +100,7 @@
                                                     }
                                                 @endphp
                                             @endif
+                                            <div>
                                                 @if(!empty($comment->comment_image))
                                                     @php
                                                         $images = json_decode($comment->comment_image, true); // Decode JSON into an array
@@ -113,7 +114,7 @@
                                                         @endforeach
                                                     @endif
                                                 @endif
-
+                                            </div>
 
                                             @if(!empty($comment->comment_pdf))
                                                 <p>

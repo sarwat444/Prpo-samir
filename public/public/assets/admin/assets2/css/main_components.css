@@ -1,0 +1,33 @@
+.btn_1{
+    background-color: #013c60;
+    color: #ffffff;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    border-radius: 19px;
+    font-size: 11px;
+    padding: 10px 12px;
+    border: 0;
+}
+.btn_1:hover
+{
+    background-image: linear-gradient(to right, #013c60 , #0478e0);
+}
+/*------------------------*/
+.btn_2
+{
+    padding: 10px 15px ;
+    background-color:#777777;  ;
+    color: #ffffff;
+    border-radius: 5px;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+.btn_2:hover
+{
+    background-image: linear-gradient(to right, #013c60 , #0478e0)
+}
+/*------------------------*/

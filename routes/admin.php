@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\ChatController ;
 |
 */
 
-CONST PUBLIC_PATH = "public/" ;
+CONST PUBLIC_PATH = "" ;
 Route::post('/login/store', 'LoginController@Login')->name('admin.login');
 
 Route::group(['namespace' => 'Admin', 'middleware' => 'guest:admin'], function () {
@@ -143,7 +143,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
 
 
         Route::post('/update/status/{id}', 'TasksController@updateStatus')->name('admin.tasks.update_status');
+
         Route::post('/get/data', 'TasksController@showTaskData')->name('admin.get.task_data');
+        Route::PUT('/update/idea/{id}', 'TasksController@updateIdeaTask')->name('admin.ides.update');
+        Route::post('/get/idea/data', 'TasksController@showIdeaTaskData')->name('admin.get_idea_task_data');
+
         Route::post('/create/view', 'TasksController@getCreateView')->name('admin.get.create_view');
         Route::post('/update/task/field', 'TasksController@updateTaskfield')->name('admin.tasks.update_field');
         Route::get('/mytasks', 'TasksController@usertasks')->name('admin.usertasks');   // User Tasks

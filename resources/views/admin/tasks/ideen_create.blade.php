@@ -15,19 +15,23 @@
             <div class="widget-header">
 
             </div>
-            <div class="widget-content widget-content-area">
-                <form id="create-category" action="{{route('admin.ides.store')}}" method="POST"
-                      enctype="multipart/form-data">
-                    @csrf
+            <form class="create_idea" id="create-category"
+                  action="{{ isset($task) ? route('admin.ides.update', $task->id) : route('admin.ides.store') }}"
+                  method="POST" enctype="multipart/form-data">
+                @csrf
+                @if(isset($task))
+                    @method('PUT')
+                @endif
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
                                 <label>{{__('messages.Titel')}}</label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="task_title" class="form-control" id="task_title"
-                                       placeholder="{{__('messages.Titel')}}">
-                                <input type="hidden" name="task_added_by" value="{{auth()->user()->id }}" >
+                                <input type="text" name="task_title"
+                                       value="{{ isset($task) ? $task->task_title : '' }}"
+                                       class="target form-control popup_title" data-name="task_title">
+                                <input type="hidden" name="task_added_by" value="{{ auth()->user()->id }}">
                                 <span class="text-danger error-message" id="category_name_error"></span>
                             </div>
                             <div class="col-md-1">
@@ -35,40 +39,43 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <lable class="control-label">{{__('messages.dead_line')}}</lable>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="datepicker">
-                                        <input type="text" class="dateTimeFlatpickr form-control flatpickr flatpickr-input target" data-name="task_due_date" name="task_due_date" placeholder="DeadLine">
-                                        <span class="text-danger error-message" id="task_due_date_error"></span>
-                                     </div>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">{{__('messages.dead_line')}}</label>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <lable class="control-label">{{__('messages.Beschreibung')}}</lable>
-                                </div>
-                                <div class="col-md-7">
-                                    <textarea  name="task_desc" class="form-control" id="description" rows="6" placeholder="{{__('messages.Beschreibung')}}"></textarea>
-                                    <span class="text-danger error-message" id="description_error"></span>
-                                </div>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       value="{{ isset($task) ? date('d.m.Y', strtotime($task->task_due_date)) : '' }}"
+                                       class="dateTimeFlatpickr form-control flatpickr flatpickr-input target"
+                                       data-name="task_due_date" name="task_due_date" placeholder="DeadLine">
+                                <span class="text-danger error-message" id="task_due_date_error"></span>
                             </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label">{{__('messages.Beschreibung')}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                 <textarea class="form-control target txta" data-name="task_desc" name="task_desc" rows="8" style="margin-top:5px !important;">{{ isset($task) ? $task->task_desc : '' }}</textarea>
+                                 <span class="text-danger error-message" id="description_error"></span>
+                            </div>
                         </div>
                     </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <button type="submit" class="btn btn-primary save_task custom-btn btn_1"
-                                            style="float: right"> {{__('messages.save')}} </button>
-                                </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <button type="submit" class="btn btn-primary save_task custom-btn btn_1" style="float: right">
+                                    {{__('messages.save')}}
+                                </button>
                             </div>
                         </div>
+                    </div>
                 </form>
+
                 <div class="code-section-container show-code">
                     <div class="code-section text-left">
                     </div>

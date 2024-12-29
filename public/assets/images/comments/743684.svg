@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 60 34">
+  <title xml:lang="de">Schwarz Rot Gold</title>
+  <path d="m0 2q15-4 30 0t30 0v11q-15 4-30 0t-30 0z"/>
+  <path d="m0 12q15-4 30 0t30 0v11q-15 4-30 0t-30 0z" fill="#f00"/>
+  <path d="m0 22q15-4 30 0t30 0v10q-15 4-30 0t-30 0z" fill="#fc0"/>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Schwarz Rot Gold</dc:title>
+        <dc:date>2010-11-12T19:27:48</dc:date>
+        <dc:description>The black-red-gold tricolour of Germany, slightly bent to display a waving flag. This graphic is meant to be used at small scale as a button in a language selection menu. It could easily be adapted to display similar flags with different colours.</dc:description>
+        <dc:source>http://openclipart.org/detail/95263/schwarz-rot-gold-by-skotan</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>skotan</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>deutsch</rdf:li>
+            <rdf:li>deutschland</rdf:li>
+            <rdf:li>flag</rdf:li>
+            <rdf:li>german</rdf:li>
+            <rdf:li>germany</rdf:li>
+            <rdf:li>tricolour</rdf:li>
+            <rdf:li>waving</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

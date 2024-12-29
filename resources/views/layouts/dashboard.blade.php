@@ -8,8 +8,8 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
     <!-- Favicons -->
-    <link href="{{asset('public/public/assets/images/Pri-Po_logo_long3.png')}}" rel="icon">
-    <link href="{{asset('public/public/assets/admin/assets2/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+    <link href="{{asset('public/assets/images/Pri-Po_logo_long3.png')}}" rel="icon">
+    <link href="{{asset('public/assets/admin/assets2/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,28 +27,28 @@
 
 
 
-    <link href="{{asset('public/public/assets/admin/assets2/vendor/aos/aos.css')}}" rel="stylesheet">
-    <link href="{{asset('public/public/assets/admin/assets2/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/public/assets/admin/assets2/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/public/assets/admin/assets2/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/public/assets/admin/assets2/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('public/public/assets/admin/assets2/css/jquery-ui.css')}} ">
-    <link rel="stylesheet" type="text/css" href="{{asset('public/public/assets/admin/assets/css/forms/theme-checkbox-radio.css')}}">
-    <link href="{{asset('public/public/assets/admin/plugins/loaders/custom-loader.css')}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{asset('public/public/assets/admin/assets2/css/jquery.dataTables.min.css')}}">
-    <link href="{{asset('public/public/assets/admin/plugins/flatpickr/flatpickr.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('public/public/assets/admin/assets2/css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('public/public/assets/admin/assets2/css/main_components.css')}}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{asset('public/public/assets/admin/assets2/images/shortcutimage.png')}}"/>
-    <link  rel="stylesheet" href="{{asset('public/public/assets/admin/assets2/css/animate.min.css')}}"/>
-    <link href="{{asset('public/public/assets/admin/assets2/css/dd.css')}}" rel="stylesheet">
-    <script src="{{asset('public/public/assets/admin/assets2/js/dd.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('public/public/assets/admin/assets2/css/dashboardstyle.css')}}">
-    <script src="{{asset('public/assets/admin/assets2/js/sweetalert.min.js')}}"></script>
+    <link href="{{asset('public/assets/admin/assets2/vendor/aos/aos.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/admin/assets2/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/admin/assets2/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/admin/assets2/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/admin/assets2/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/assets/admin/assets2/css/jquery-ui.css')}} ">
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/admin/assets/css/forms/theme-checkbox-radio.css')}}">
+    <link href="{{asset('public/assets/admin/plugins/loaders/custom-loader.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('public/assets/admin/assets2/css/jquery.dataTables.min.css')}}">
+    <link href="{{asset('public/assets/admin/plugins/flatpickr/flatpickr.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('public/assets/admin/assets2/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/admin/assets2/css/main_components.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{asset('public/assets/admin/assets2/images/shortcutimage.png')}}"/>
+    <link  rel="stylesheet" href="{{asset('public/assets/admin/assets2/css/animate.min.css')}}"/>
+    <link href="{{asset('public/assets/admin/assets2/css/dd.css')}}" rel="stylesheet">
+    <script src="{{asset('public/assets/admin/assets2/js/dd.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('public/assets/admin/assets2/css/dashboardstyle.css')}}">
+    <script src="{{asset('assets/admin/assets2/js/sweetalert.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('public/assets/admin/assets2/css/theme-checkbox-radio.css')}}">
-    <link href="{{asset('public/public/assets/admin/assets2/css/mattarialicon.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/admin/assets2/css/mattarialicon.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('public/assets/admin/assets2/css/theme-checkbox-radio.css')}}">
-    <link href="{{asset('public/public/assets/admin/assets2/css/mattarialicon.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/admin/assets2/css/mattarialicon.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <!--Drag And Drop Images -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css">
@@ -133,30 +133,27 @@
 </div>
 </div>
 <!-- Vendor JS Files -->
-<script src="{{asset('public/public/assets/admin/assets2/js/jquery-ui.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/vendor/aos/aos.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/js/sweetalert2@11.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/plugins/flatpickr/flatpickr.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/vendor/glightbox/js/glightbox.min.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/vendor/php-email-form/validate.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/vendor/swiper/swiper-bundle.min.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/js/Sortable.min.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/js/jquery.ddslick.min.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/js/jquery.dataTables.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/js/main.js')}}"></script>
-<script src="{{asset('public/public/assets/admin/assets2/js/dashboardscript.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/js/jquery-ui.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/vendor/aos/aos.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/js/sweetalert2@11.js')}}"></script>
+<script src="{{asset('public/assets/admin/plugins/flatpickr/flatpickr.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/vendor/glightbox/js/glightbox.min.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/vendor/php-email-form/validate.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/vendor/swiper/swiper-bundle.min.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/js/Sortable.min.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/js/jquery.ddslick.min.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/js/main.js')}}"></script>
+<script src="{{asset('public/assets/admin/assets2/js/dashboardscript.js')}}"></script>
 
 
 <script>
     $(document).ready(function () {
 
 
-        var select = $('#categories_select').change(function (e) {
-
-        });
-
+        var select = $('#categories_select').change(function (e) {});
         // make a a copy
         $('.copy').on('click', function () {
             var copy = $(this).data('id');
@@ -1229,6 +1226,29 @@
         }
     }, 4000); // 4000ms = 4 seconds
 </script>
+
+<script>
+    // click on idea card popup
+    $(document).on('click', '.btn-idea-popup', function (event) {
+        event.preventDefault();
+        var id = $(this).data('id');
+        $.ajax({
+            type: "post",
+            url: "{{route('admin.get_idea_task_data')}}",
+            data: {id : id , _token : '{{ csrf_token() }}'},
+            cache: false,
+            success: function (data) {
+                $('#tasks').modal('show');
+                $('.overlay').css('display' ,'block');
+                $(".sidebar-model").html(data);
+                $(".sidebar-model").css({'width':'50%'}) ;
+            },
+            error: function (jqXHR, status, err) {
+            },
+        });
+    });
+</script>
+
 @yield('script')
 </body>
 </html>

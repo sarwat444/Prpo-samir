@@ -65,6 +65,20 @@
 
 <script src="{{asset('public/assets/admin/assets2/js/sweetalert.min.js')}}"></script>
 <style>
+    .task_comments_count{
+        visibility: visible;
+        background-color: transparent;
+        color: #0d4263;
+        font-size: 17px;
+    }
+    .custom_comments_count
+    {
+        visibility: hidden;
+        background-color: transparent;
+        color: #0d4263;
+        font-size: 12px;
+        border: 0 !important; ;
+    }
     #drop-zone {
         border: 1px dashed;
         width: 100%;
@@ -83,7 +97,7 @@
     /* images that are previewed prior to form submission*/
 
     .drop-zone__thumb {
-        width: 200px;
+        width: 100px;
         height: auto;
         display: block;
     }
@@ -102,7 +116,6 @@
         font-size: 12px;
         padding: 5px;
         border: 0;
-        background-color: #013c60;
         border-radius: 4px;
     }
     .select2-results__options li span img {
@@ -307,6 +320,7 @@
 
     #sidebarMenu .task-details li span {
         border: 0;
+        height: 30px;
     }
 
     .maincommenttask {
@@ -493,11 +507,13 @@
     }
 
     .comment-content img {
-        height: 100px;
-        width: 100px;
+        height: auto;
+        width: 103px;
         border: 1px solid #eee;
         margin: 0 auto;
-        border-radius: 6px;
+        object-fit: cover;
+        margin-top: 11px;
+        margin-bottom: 10px;
     }
 
     .comment-content a {
@@ -613,12 +629,12 @@
     #sidebarMenu .todo .description {
         word-wrap: break-word;
         font-size: 11px;
+        min-width:332px
 
     }
 
     #sidebarMenu #shuffle2 .desc {
         font-size: 12px;
-        margin-top: 10px;
         min-width: 300px;
     }
 
@@ -1013,7 +1029,7 @@
     .subtasks_users {
         visibility: hidden;
     }
-
+    subtasks_users
     .tested {
         color: #eb6028;
     }
@@ -1511,13 +1527,6 @@
         border: 1px solid #eeeeee !important;
     }
 
-    #sidebarMenu #commentbox:hover {
-        border: 1px solid #000 !important;
-    }
-
-    #sidebarMenu #commentbox:focus {
-        border: 1px solid #000 !important;
-    }
 
     #sidebarMenu .send-comment,
     #sidebarMenu .view_comment {
@@ -1869,10 +1878,13 @@
                                     <lable class="control-label">{{__('messages.desc')}}</lable>
                                 </div>
                                 <div class="col-md-7">
-                                            <textarea class="form-control target txta" data-name="task_desc"
-                                                      style="margin-top:5px !important;">{{$task->task_desc}}</textarea>
-
+                                   <textarea class="form-control target txta" data-name="task_desc" style="margin-top:5px !important;">{{$task->task_desc}}</textarea>
                                 </div>
+
+
+
+
+
                             </div>
                             <!-- Upload Post Image -->
                             <div class="form-group mt-3">
@@ -2068,7 +2080,6 @@
                                                             </select>
                                                             <input type="hidden" value="{{$subtask->id}}" class="testinput" data-id="{{$subtask->id}}"/>
                                                             <button class="btn btn-icon btn-primary TaskTitle task_comments_count" data-id="{{$subtask->id}}"><i class="fa fa-comments"></i></button>
-
                                                         </li>
                                                     @endforeach
                                                 @endif
@@ -2229,6 +2240,10 @@
                                                             <input type="hidden" value="{{$subtask->id}}"
                                                                    class="testinput"
                                                                    data-id="{{$subtask->id}}"/>
+
+
+                                                            <button class="btn btn-icon btn-primary TaskTitle task_comments_count" data-id="{{$subtask->id}}"><i class="fa fa-comments"></i></button>
+
                                                         </li>
                                                     @endforeach
                                                 @endif
@@ -2245,10 +2260,10 @@
                         </div>
                         <!--Start  Comments -->
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-9">
                                 <div class="comments">
-
                                     <form  action="{{route('admin.subtasks.store_comment')}}" id="upload-images-form" enctype="multipart/form-data" method="post">
+                                        @csrf
                                         <input id="hidden_subtask" type="hidden" name="subtask_id"/>
                                         <textarea id="commentbox" rows="5" class="form-control"
                                                   placeholder="{{__('messages.enter_comment')}}..."></textarea>
@@ -2266,12 +2281,13 @@
                                                 > {{$user->first_name}}</option>
                                             @endforeach
                                         </select>
-                                        <div id="drop-zone" class="drop-zone flex">
-                                            <p>DRAG AND DROP IMAGES HERE</p>
+                                        <div id="popup1" class="popup">
+                                            <div class="drop-zone-container">
+                                                <div class="drop-zone">DRAG AND DROP IMAGES HERE</div>
+                                                <input class="standard-upload-files" type="file" name="standard-upload-files[]" multiple style="display:none">
+                                                <div class="show-selected-images"></div>
+                                            </div>
                                         </div>
-                                        <input id="standard-upload-files" style="display:none" type="file"
-                                               name="standard-upload-files[]" multiple>
-                                        <div id="show-selected-images"></div>
 
                                         <button type="submit" id="add_comment" class="send-comment send-comment2 btn_1"
                                                 data-task="{{$task->id}}">
@@ -2285,11 +2301,8 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <script>
                             $(document).ready(function () {
-
                                 $('.TaskTitle').click(function (e) {
                                     e.preventDefault();
                                     $subtask_id = $(this).data('id');
@@ -2307,14 +2320,11 @@
                                         },
                                     });
                                 })
-
                             });
                         </script>
 
                         <script>
-
                             $(document).ready(function () {
-
                                 $(document).on('change', '.donecomment', function (e) {
                                     if ($(this).prop("checked")) {
                                         var comment_id = $(this).data('id');
@@ -2323,7 +2333,6 @@
                                         var comment_author = $('.comments-list' + comment_id).data('author');
                                         /* display  model */
                                         $('#exampleModal' + comment_id).modal('toggle');
-
                                     }
                                 });
 
@@ -2655,11 +2664,7 @@
                                 });
                             });
                         </script>
-
-
                         <script>
-
-
                             var CLS_MATERIAL_ICONS = "material-icons";
                             var CLS_DESCRIPTION = "description";
                             var CLS_BTN_REMOVE = "btn-remove";
@@ -2685,26 +2690,9 @@
                             var percentage = document.querySelector(".todo .percentage");
                             var newTask = document.querySelector(".todo .new-task");
 
-                            function load() {
-                                /*
-                                var aTasks = [];
-                                var loadedString = localStorage.getItem("tasks");
-
-                                if (loadedString != null) {
-
-                                  aTasks = JSON.parse(loadedString);
-                                  for (let i = 0; i < aTasks.length; i++) {
-                                      var descr = aTasks[i].description;
-                                      var isComplete = aTasks[i].isComplete;
-                                      var task = createNewTask(descr, isComplete);
-                                      taskList.appendChild(task);
-                                  }
-                                }
-                                */
-                            }
+                            function load() {}
 
                             function save() {
-
                                 var aTasks = [];
 
                                 for (let i = 0; i < taskList.children.length; i++) {
@@ -2716,12 +2704,8 @@
                                     };
 
                                 }
-
-                                //  for (let i = 0; i < aTasks.length; i++) {
-                                //         console.log(aTasks[i]);
-                                //   }
-
                                 $(document).ready(function () {
+
                                     var task_id = $("#task_id").val();
                                     if (aTasks[aTasks.length - 1].date == 'on') {
                                         aTasks[aTasks.length - 1].date = null;
@@ -2740,16 +2724,32 @@
                                         success: function (data) {
                                             $('#task' + task_id).html('');
                                             $('#task' + task_id).html(data.options);
-
+                                            $('.subtask_count'+data.subtask_id).css('visibility' , 'visible') ;
+                                            $('.TaskTitle').click(function (e) {
+                                                e.preventDefault();
+                                                $subtask_id = $(this).data('id');
+                                                $('.main-tasks').css('display', 'none');
+                                                $('#tabcomments').css('display', 'block');
+                                                $.ajax({
+                                                    type: "POST",
+                                                    url: '{{route('admin.comments.getTaskComments')}}',   // need to create this post route
+                                                    cache: false,
+                                                    data: {subtask_id: $subtask_id},
+                                                    success: function (data) {
+                                                        $('#tabcomments').html(data.options);
+                                                    },
+                                                    error: function (jqXHR, status, err) {
+                                                    },
+                                                });
+                                            })
                                         },
                                         error: function (jqXHR, status, err) {
                                         },
                                     });
+
                                 });
 
                                 localStorage.setItem("tasks", JSON.stringify(aTasks));
-
-
                             }
 
                             function rebuild_popup(id) {
@@ -2821,7 +2821,6 @@
                                 }
                             }
 
-
                             function updateStyle(task) {
                                 if (task.children[POS_CHECKBOX].state) {
                                     task.classList.add("completed");
@@ -2878,7 +2877,8 @@
 
                             <?php $SD = 1; ?>
                             $(document).ready(function () {
-                                function createNewTask(text, isComplete) {
+                                function createNewTask(text, isComplete){
+
                                     var task = document.createElement("li");
                                     task.className = CLS_TASK;
 
@@ -2897,6 +2897,7 @@
                                     descr.innerHTML = text;
                                     descr.setAttribute('data-id', (xx + ic));
                                     descr.setAttribute("contenteditable", "true");
+
 
                                     descr.onkeydown = function (e) {
                                         if ((e.keyCode === KC_BACKSPACE) && ((e.target.innerHTML === "<br>") || (e.target.innerText.length === 0))) {
@@ -2936,7 +2937,6 @@
                                             return false;
                                         }
                                     }
-
 
                                     var date = document.createElement("div");
                                     date.className = "test";
@@ -3037,8 +3037,8 @@
 
                                     // Create the button
                                     let button = document.createElement("button");
-                                    button.className = "btn btn-icon btn-primary TaskTitle task_comments_count"; // Add custom classes for styling
-                                    button.setAttribute("data-id", (xx + ic)); // Set the data-id attribute
+                                    button.className = "btn btn-icon btn-primary TaskTitle custom_comments_count subtask_count" + (xx + ic);
+                                    button.setAttribute("data-id", xx + ic);
 
 
                                     let icon = document.createElement("i");
@@ -3052,10 +3052,7 @@
                                         window.location.href = url; // Navigate to the URL if needed
                                     });
 
-
-
-
-
+                                    task.appendChild(button);
                                     task.appendChild(deleteicones);
                                     task.appendChild(dropdown);
                                     task.appendChild(dragBtn);
@@ -3065,6 +3062,8 @@
                                     task.appendChild(responsiple);
                                     task.appendChild(resinput);
                                     task.appendChild(button);
+
+
 
                                     $(".subtasks_users").each(function () {
                                         $(this).on('change', function () {
@@ -3129,11 +3128,11 @@
                                         $(this).next(".hiddenInput").datepicker("show");
                                     });
 
-                                    /*satrt select plugin */
 
-
-                                    // set select plugin after enter
                                     $('.dd-click-off-close').css('display', 'none');
+
+                                    $(".subtask_count").css('display', 'block');
+
                                     $('.slick').ddslick({
 
                                         onSelect: function (selectedData) {
@@ -3170,15 +3169,11 @@
 
                                     $('.dd-click-off-close').css('display', 'none');
 
-
                                     ic++;
                                     xv++;
 
                                     return task;
-
                                 }
-
-
                                 newTask.onkeydown = function (e) {
                                     // Enter, Shift, Backspace, Up etc
                                     var keyCodeIsSpecial = e.keyCode <= 47 | e.keyCode === 91 | e.keyCode === 144 | e.keyCode === 145;
@@ -3245,7 +3240,6 @@
                                 });
                             })
                         </script>
-
 
                     </div>
                 </div>
@@ -3520,61 +3514,6 @@
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"
             }
         });
-
-        $("#add_comment").on("click", function () {
-            var task_id = $(this).data("task");
-            let subtask_id = $('#hidden_subtask').val();
-            var comment = $('#commentbox').val().replace(/\n/g, "\n");
-            var tags = $("#commentTag").val();
-            var tagstring = tags.toString();
-
-            // Add comment via AJAX
-
-            $.ajax({
-                type: "post",
-                url: "{{ route('admin.subtasks.store_comment') }}",
-                data: {
-                    comment: comment,
-                    subtask_id: subtask_id,
-                    tags: tagstring,
-                    task_id: task_id,
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function (response) {
-                    if (response.comment_id) {
-
-                        myDropzone.on("sending", function (file, xhr, formData) {
-                            formData.append("comment_id", response.comment_id);
-                            formData.append("subtask_id", subtask_id);
-                        });
-
-                        myDropzone.processQueue();
-
-                        $.ajax({
-                            type: "post",
-                            url: "{{ route('admin.get.task_data') }}",
-                            data: {
-                                id: task_id,
-                                type: 1,
-                                _token: "{{ csrf_token() }}"
-                            },
-                            success: function (data) {
-                                $('#tasks').modal('show');
-                                $('.overlay').css('display', 'block');
-                                $(".sidebar-model").html(data);
-                                $(".sidebar-model").css({ width: "50%" });
-                            }
-                        });
-                    } else {
-                        console.error("Error: Comment not saved!");
-                    }
-                },
-                error: function (jqXHR, status, err) {
-                    console.error("Error:", err);
-                }
-            });
-        });
-
 
         // Active And Disactive textarea
         $('.replaystyle').each(function () {
@@ -4467,114 +4406,181 @@
 </script>
 
 <script>
-    const files = []; // an Array to hold our files, accessible to all our functions below
-    const dropZone = document.querySelector(".drop-zone"),
-        showSelectedImages = document.getElementById("show-selected-images"),
-        fileUploader = document.getElementById("standard-upload-files");
+    // Map to hold files for each popup
+    const fileStorage = new Map();
 
-    dropZone.addEventListener("click", (evt) => {
-        // assigns the dropzone to the hidden input element so when you click 'select files' it brings up a file picker window
-        fileUploader.click();
-    });
+    function getFilesForPopup(popupId) {
+        if (!fileStorage.has(popupId)) fileStorage.set(popupId, []);
+        return fileStorage.get(popupId);
+    }
 
-    // Prevent browser default when dragging over
-    dropZone.addEventListener("dragover", (evt) => {
-        evt.preventDefault();
-    });
-
-    fileUploader.addEventListener("change", (evt) => {
-        // update the list of files
-        files.push(...fileUploader.files);
-        [...fileUploader.files].forEach(updateThumbnail);
-    });
-
-    dropZone.addEventListener("drop", (evt) => {
-        evt.preventDefault();
-        const dropped_files = evt.dataTransfer.files;
-        if (dropped_files.length) {
-            files.push(...dropped_files);
+    document.addEventListener("click", (evt) => {
+        const dropZone = evt.target.closest(".drop-zone");
+        if (dropZone) {
+            const container = dropZone.closest(".drop-zone-container");
+            container.querySelector(".standard-upload-files").click();
         }
-        [...dropped_files].forEach(updateThumbnail);
     });
 
-    // updateThumbnail function that needs to be able to handle multiple files
-    function updateThumbnail(file) {
-        if (file.type.startsWith("image/")) {
-            let uploadImageWrapper = document.createElement("figure"),
-                removeImage = document.createElement("div"),
-                thumbnailElement = new Image();
+    document.addEventListener("dragover", (evt) => {
+        if (evt.target.matches(".drop-zone")) {
+            evt.preventDefault();
+        }
+    });
 
-            // 'x' that deletes the image
-            removeImage.classList.add("remove-image");
-            removeImage.innerHTML =
+    document.addEventListener("drop", (evt) => {
+        const dropZone = evt.target.closest(".drop-zone");
+        if (dropZone) {
+            evt.preventDefault();
+            const container = dropZone.closest(".drop-zone-container");
+            const showSelectedImages = container.querySelector(".show-selected-images");
+            const popupId = container.closest(".popup").id;
+            const files = getFilesForPopup(popupId);
+
+            const droppedFiles = evt.dataTransfer.files;
+            if (droppedFiles.length) {
+                files.push(...droppedFiles);
+                [...droppedFiles].forEach(file => updateThumbnail(file, showSelectedImages, files));
+            }
+        }
+    });
+
+    document.addEventListener("change", (evt) => {
+        const input = evt.target.closest(".standard-upload-files");
+        if (input) {
+            const container = input.closest(".drop-zone-container");
+            const showSelectedImages = container.querySelector(".show-selected-images");
+            const popupId = container.closest(".popup").id;
+            const files = getFilesForPopup(popupId);
+
+            files.push(...input.files);
+            [...input.files].forEach(file => updateThumbnail(file, showSelectedImages, files));
+        }
+    });
+
+    function updateThumbnail(file, showSelectedImages, files) {
+        if (file.type.startsWith("image/")) {
+            const wrapper = document.createElement("figure");
+            const removeBtn = document.createElement("div");
+            const thumbnail = new Image();
+
+            // Set up remove button
+            removeBtn.classList.add("remove-image");
+            removeBtn.innerHTML =
                 '<svg id="remove-x" viewBox="0 0 150 150"><path fill="#000" d="M147.23,133.89a9.43,9.43,0,1,1-13.33,13.34L75,88.34,16.1,147.23A9.43,9.43,0,1,1,2.76,133.89L61.66,75,2.76,16.09A9.43,9.43,0,0,1,16.1,2.77L75,61.66,133.9,2.77a9.42,9.42,0,1,1,13.33,13.32L88.33,75Z"/></svg>';
 
-            // image thumbnail
-            thumbnailElement.classList.add("drop-zone__thumb");
-            thumbnailElement.src = URL.createObjectURL(file);
+            // Set up thumbnail image
+            thumbnail.src = URL.createObjectURL(file);
+            thumbnail.classList.add("drop-zone__thumb");
+            thumbnail.onload = () => URL.revokeObjectURL(thumbnail.src);
 
-            // do not forget to revoke the blob:// URL when the image is loaded
-            thumbnailElement.onload = (evt) => URL.revokeObjectURL(thumbnailElement.src);
+            // Append elements
+            wrapper.append(removeBtn, thumbnail);
+            showSelectedImages.append(wrapper);
 
-            // appending elements
-            showSelectedImages.append(uploadImageWrapper); // <figure> element
-            uploadImageWrapper.append(removeImage); // 'x' to delete
-            uploadImageWrapper.append(thumbnailElement); // image thumbnail
-
-            // Delete images
-            removeImage.addEventListener("click", (evt) => {
-                const deleteImage = removeImage.parentElement;
-                deleteImage.remove();
+            // Remove file from list when clicked
+            removeBtn.addEventListener("click", () => {
                 const index = files.indexOf(file);
-                files.splice(index, 1);
+                if (index > -1) files.splice(index, 1);
+                wrapper.remove();
             });
         }
     }
 
-    // Handle upload to server
-    document.getElementById("upload-images-form").onsubmit = (evt) => {
-        evt.preventDefault();
+    document.addEventListener("submit", (evt) => {
+        const form = evt.target.closest("#upload-images-form");
+        if (form) {
+            evt.preventDefault(); // Prevent default form submission
 
-        // Create a FormData object to hold all the form data including files
-        const formdata = new FormData();
+            // Get the popup ID (assuming the popup is open)
+            const popupId = document.querySelector('.popup').id;
+            const files = getFilesForPopup(popupId);
 
-        // Append the selected files to the FormData object
-        for (const file of files) {
-            formdata.append("submit-images[]", file); // Use submit-images[] to allow multiple files
+            // Create a FormData object to hold form data and files
+            const formData = new FormData();
+
+            // Append selected files to FormData
+            files.forEach(file => formData.append("standard-upload-files[]", file));
+
+            // Get other form values
+            const subtask_id = document.getElementById("hidden_subtask").value;
+            const comment = document.getElementById("commentbox").value;
+            const tags = $('#commentTag').val(); // Use jQuery for Select2
+            const task_id = document.getElementById("add_comment").dataset.task;
+
+            formData.append("subtask_id", subtask_id);
+            formData.append("comment", comment);
+            formData.append("tags", tags.join(","));
+            formData.append("task_id", task_id);
+            formData.append("_token", "{{ csrf_token() }}");
+
+            // AJAX submission
+            $.ajax({
+                type: "POST",
+                url: "{{ route('admin.subtasks.store_comment') }}",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: (response) => {
+                    console.log("Success:", response);
+
+                    // Reset the form and clear selections
+                    form.reset(); // Reset the form
+                    $(".show-selected-images").empty(); // Clear image previews
+                    $("#commentTag").val([]).trigger('change'); // Reset Select2 tags
+
+                    // Reset the file input field (important)
+                    const fileInput = form.querySelector(".standard-upload-files");
+                    if (fileInput) {
+                        fileInput.value = ""; // Clear the file input value
+                    }
+
+                    // Clear file storage to ensure no files remain
+                    const fileStorage = new Map();
+                    fileStorage.set(popupId, []); // Reset the file map for the current popup
+
+                    // Hide task section and show comments section
+                    $(".main-tasks").hide();
+                    $("#tabcomments").show();
+
+                    // Reload comments section
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('admin.comments.getTaskComments') }}",
+                        data: { subtask_id },
+                        success: (data) => {
+                            $("#tabcomments").html(data.options);
+                        },
+                        error: (jqXHR, status, err) => {
+                            console.error(err);
+                        },
+                    });
+                },
+                error: (jqXHR, status, err) => {
+                    console.error("Error:", err);
+                },
+            });
         }
+    });
 
-        // Get form values
-        var task_id = $('#add_comment').data("task");
-        let subtask_id = $('#hidden_subtask').val();
-        var comment = $('#commentbox').val().replace(/\n/g, "\n");  // Preserve newlines
-        var tags = $("#commentTag").val();
-        var tagstring = tags.toString();  // Convert tags to a comma-separated string
+    // Additional code for the drag-and-drop functionality
+    document.addEventListener("drop", (evt) => {
+        const dropZone = evt.target.closest(".drop-zone");
+        if (dropZone) {
+            evt.preventDefault();
+            const container = dropZone.closest(".drop-zone-container");
+            const showSelectedImages = container.querySelector(".show-selected-images");
+            const popupId = container.closest(".popup").id;
+            const files = getFilesForPopup(popupId);
 
-        // Append other form data to the FormData object
-        formdata.append("comment", comment);
-        formdata.append("subtask_id", subtask_id);
-        formdata.append("tags", tagstring);
-        formdata.append("task_id", task_id);
-        formdata.append("_token", "{{ csrf_token() }}");
-
-        // Make the AJAX request to submit the form
-        $.ajax({
-            type: "POST",
-            url: "{{ route('admin.subtasks.store_comment') }}",
-            data: formdata,  // Send FormData object (including files)
-            processData: false,  // Prevent jQuery from processing the data
-            contentType: false,  // Prevent jQuery from setting the content type
-            success: function (response) {
-                // Reset the form after submission
-                $('#upload-images-form')[0].reset();  // Reset form fields
-                // Clear Dropzone (remove all files from the queue)
-                myDropzone.removeAllFiles(true);  // true to delete the files from Dropzone
-            },
-            error: function (jqXHR, status, err) {
-                console.error("Error:", err);
+            const droppedFiles = evt.dataTransfer.files;
+            if (droppedFiles.length) {
+                files.push(...droppedFiles);
+                [...droppedFiles].forEach(file => updateThumbnail(file, showSelectedImages, files));
             }
-        });
-    }
+        }
+    });
+    
 </script>
 
 

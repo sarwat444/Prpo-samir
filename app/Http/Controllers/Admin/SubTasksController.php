@@ -132,33 +132,43 @@ class SubTasksController extends Controller
      return view('admin.subtasks.create',compact('users','tasks'));
   }
 
-  public function store(Request $request) {
-      try {
-        $validator = Validator::make($request->all(),[
-               'task_id' => 'required',
-          ]);
+    public function store(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'task_id' => 'required',
+            ]);
 
-          if ($validator->fails()) {
-              return redirect()->route('admin.subtasks.create')->with(array('errors' => $validator->getMessageBag()));
-          }
-         $data = new SubTask();
-         $data->subtask_title = str_replace('&nbsp;', '', $request->subtask_title);;
-         $data->task_id = $request->task_id;
-         $data->subtask_user_id = $request->subtask_user_id;
-         $data->subtask_added_by = Auth::user()->id;
-         //$data->subtask_start_date = $request->subtask_start_date;
-         $data->subtask_due_date = $request->subtask_due_date;
-         $data->account_id = auth()->user()->account_id;
-         $data->save();
-         $task = Task::find($request->task_id);
-         $data = view('admin.tasks.single_task',compact('task'))->render();
-         return response()->json(['options'=>$data]);
+            if ($validator->fails()) {
+                return redirect()
+                    ->route('admin.subtasks.create')
+                    ->with(['errors' => $validator->getMessageBag()]);
+            }
 
-      }catch(Exception $e) {
-      }
+            // Save the SubTask
+            $subTask = new SubTask();
+            $subTask->subtask_title = str_replace('&nbsp;', '', $request->subtask_title);
+            $subTask->task_id = $request->task_id;
+            $subTask->subtask_user_id = $request->subtask_user_id;
+            $subTask->subtask_added_by = Auth::user()->id;
+            $subTask->subtask_due_date = $request->subtask_due_date;
+            $subTask->account_id = auth()->user()->account_id;
+            $subTask->save();
 
+            // Render the task HTML
+            $task = Task::find($request->task_id);
+            $renderedHtml = view('admin.tasks.single_task', compact('task'))->render();
 
-  }
+            // Return JSON response with subtask ID
+            return response()->json([
+                'options' => $renderedHtml,
+                'subtask_id' => $subTask->id, // Access ID from the saved SubTask instance
+            ]);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
   public function edit(Request $request ) {
           $id     = $request->id;
           $data  = SubTask::find($id);
@@ -377,6 +387,7 @@ class SubTasksController extends Controller
 
     public function storeComment(Request $request)
     {
+
         // Validate the required fields
         $request->validate([
             'comment' => 'required',
@@ -397,10 +408,10 @@ class SubTasksController extends Controller
             $data->save();
 
             // Process the uploaded images
-            if ($request->hasFile('submit-images')) {
+            if ($request->hasFile('standard-upload-files')) {
                 $imagePaths = [];
 
-                foreach ($request->file('submit-images') as $image) {
+                foreach ($request->file('standard-upload-files') as $image) {
                     // Generate a unique file name for each image
                     $imageExt = $image->getClientOriginalExtension();
                     $fileName = rand(123456, 999999) . "." . $imageExt;
