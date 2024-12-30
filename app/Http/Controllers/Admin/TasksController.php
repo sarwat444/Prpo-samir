@@ -152,14 +152,6 @@ class TasksController extends Controller
 
             }
 
-
-
-
-
-
-
-
-
             $data = new Task();
             $data->task_title = $request->task_title;
             $data->task_desc = $request->task_desc;
@@ -268,6 +260,22 @@ class TasksController extends Controller
         } catch (Exception $e) {
             return redirect()->route('admin.dashboard')->with(['error' => 'Something Wrong Happen']);
         }
+    }
+    public function pending_posts()
+    {
+        $tasks = Task::with('category')->where(['accepted'=> 0 ])->get();
+        $users = User::where('account_id', auth()->user()->account_id)->where('deleted', 0 )->where('status' , 0)->get();
+        $status = 0 ;
+        $title = 'Pending Posts' ;
+        return view('admin.tasks.pending_posts',compact('tasks' ,'users' ,'status' ,'title'));
+    }
+
+    public function accept_task(Request $request)
+    {
+        $id = $request->task_id;
+        $data = Task::find($id);
+        $data->accepted  = 1;
+        $data->save();
     }
 
     public function edit(Request $request)
@@ -725,7 +733,7 @@ class TasksController extends Controller
     {
         // Data Displyed on admin Tasks
         $status = 0;
-        $user_subtasks = SubTask::where('account_id', auth()->user()->account_id)->where('subtask_user_id', Auth::user()->id)->where('subtask_status',0)->orderBy('suborder')->get();
+        $user_subtasks = SubTask::where('account_id', auth()->user()->account_id)->where('subtask_user_id', Auth::user()->id)->where('subtask_status',0)->orderBy('suborder' ,  'DESC')->get();
         $users = User::where('account_id', auth()->user()->account_id)->where('deleted', 0 )->where('status' , 0)->get();
         return view('admin.tasks.admintasks')->with(compact('user_subtasks', 'users', 'status'));
     }

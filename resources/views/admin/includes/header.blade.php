@@ -658,6 +658,14 @@
     <div class="right-sidebar">
         <nav class="sidebar-navigation">
             <ul>
+
+                <li class="nav-item myposts_icon">
+                    <a class="nav-link" href="{{route('admin.tasks.pending_posts')}}" target="_blank" role="button" aria-expanded="false">
+                        <i class="fa-solid fa-boxes-stacked" style="color:#fff;background-color:#e2a03f;"></i>
+                        <span class="tooltip">{{__('messages.pending_posts')}}</span>
+                    </a>
+                </li>
+
                 <li class="nav-item myposts_icon">
                     <a class="nav-link" href="{{route('admin.tasks.my_posts')}}" target="_blank" role="button" aria-expanded="false">
                         <i class="fa-solid fa-boxes-stacked" style="color:#fff;background-color:#74a7ff;"></i>

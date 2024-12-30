@@ -128,6 +128,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
 
         // Route::get('/images/datatables/{type}', 'ImagesController@datatables')->name('admin-images-datatables'); //JSON REQUEST
         Route::get('/all', 'TasksController@index')->name('admin.tasks');
+        Route::get('/pending_posts', 'TasksController@pending_posts')->name('admin.tasks.pending_posts');
         Route::post('/filter_myposts' ,'TasksController@fillterMyposts' )->name('admin.filter.myposts') ;
         Route::get('/create', 'TasksController@create')->name('admin.tasks.create');
         Route::post('/store', 'TasksController@store')->name('admin.tasks.store');
@@ -135,6 +136,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
         Route::post('/update/{id}', 'TasksController@update')->name('admin.tasks.update');
         Route::post('/delete/', 'TasksController@delete')->name('admin.tasks.delete');
         Route::get('/my_posts', 'TasksController@my_posts')->name('admin.tasks.my_posts');
+        Route::get('/accept_task', 'TasksController@accept_task')->name('admin.tasks.accept_task');
         Route::post('/mark/complete', 'TasksController@markComplete')->name('admin.tasks.mark_complete');
         Route::post('/undelete/', 'TasksController@undelete')->name('admin.tasks.undelete');
         Route::post('/mark/uncomplete', 'TasksController@unmarkComplete')->name('admin.tasks.mark_uncomplete');

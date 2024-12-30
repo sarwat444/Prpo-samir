@@ -3827,3 +3827,11 @@ a.buttons:not(:last-child):nth-last-child(4) {
     object-fit: cover;
     border-radius: 4px;
 }
+#popup1
+{
+    min-height: 65px;
+    padding: 10px;
+    font-size: 11px;
+    border: 1px dashed #eee;
+    margin-bottom: 13px;
+}

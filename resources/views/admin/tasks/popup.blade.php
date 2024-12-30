@@ -103,9 +103,12 @@
     }
 
     #remove-x {
-        width: 1rem;
-        height: 1rem;
+        width: 14px;
+        height: 11px;
         cursor: pointer;
+        margin-top: 9px;
+        margin-bottom: 7px;
+        color: #f00;
     }
 
     #show-selected-images {
@@ -1682,6 +1685,7 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <!--Check That Not Idea Post -->
+
                                         @if($task->task_status == 0 || $task->task_status == 2)
                                             <a class="complete_task btn-complete btn btn-default"><i
                                                     class="fa fa-check-circle"></i> {{__('messages.mark_complete')}}
@@ -1692,6 +1696,11 @@
                                             </a>
                                         @endif
                                         <div class="action_buttons">
+                                            @if($task->accepted  == 0)
+                                                <a class="accept_task  btn btn-primary"><i
+                                                        class="fa fa-check-circle"></i> {{__('messages.accept_task')}}
+                                                </a>
+                                            @endif
                                             @if($task->task_status == 0 || $task->task_status == 1)
                                                 <button class="remove-task btnn-remove btn btn-danger"><i
                                                         class="fa fa-trash"></i> {{__('messages.delete')}}
@@ -2265,8 +2274,7 @@
                                     <form  action="{{route('admin.subtasks.store_comment')}}" id="upload-images-form" enctype="multipart/form-data" method="post">
                                         @csrf
                                         <input id="hidden_subtask" type="hidden" name="subtask_id"/>
-                                        <textarea id="commentbox" rows="5" class="form-control"
-                                                  placeholder="{{__('messages.enter_comment')}}..."></textarea>
+                                        <textarea id="commentbox" rows="5" class="form-control" placeholder="{{__('messages.enter_comment')}}..." required></textarea>
                                         <div id="commentoutput" style="display: none"></div>
 
                                         <select id="commentTag" name="tags[]" class="userTags select2" multiple
@@ -2281,6 +2289,7 @@
                                                 > {{$user->first_name}}</option>
                                             @endforeach
                                         </select>
+
                                         <div id="popup1" class="popup">
                                             <div class="drop-zone-container">
                                                 <div class="drop-zone">DRAG AND DROP IMAGES HERE</div>
@@ -4492,6 +4501,13 @@
         if (form) {
             evt.preventDefault(); // Prevent default form submission
 
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) {
+                // Add loading spinner and disable the button
+                submitButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`;
+                submitButton.disabled = true;
+            }
+
             // Get the popup ID (assuming the popup is open)
             const popupId = document.querySelector('.popup').id;
             const files = getFilesForPopup(popupId);
@@ -4559,9 +4575,17 @@
                 error: (jqXHR, status, err) => {
                     console.error("Error:", err);
                 },
+                complete: () => {
+                    // Restore the submit button state
+                    if (submitButton) {
+                        submitButton.innerHTML = "Submit";
+                        submitButton.disabled = false;
+                    }
+                }
             });
         }
     });
+
 
     // Additional code for the drag-and-drop functionality
     document.addEventListener("drop", (evt) => {
@@ -4580,7 +4604,7 @@
             }
         }
     });
-    
+
 </script>
 
 

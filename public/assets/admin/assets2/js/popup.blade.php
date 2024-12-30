@@ -2115,17 +2115,6 @@
                     }
                 });
 
-            // var ele = $(this);
-            // if(confirm("Are you sure")) {
-            //     $.ajax({
-            //         url: '{{url('admin.tasks.delete')}}',
-            //         method: "DELETE",
-            //         data: {_token: '{{ csrf_token() }}', task_id: task_id},
-            //         success: function (response) {
-            //             window.location.reload();
-            //         }
-            //     });
-            // }
 
         });
 
@@ -2164,19 +2153,6 @@
                         //swal("Your imaginary file is safe!");
                     }
                 });
-
-            // var ele = $(this);
-            // if(confirm("Are you sure")) {
-            //     $.ajax({
-            //         url: '{{url('admin.tasks.delete')}}',
-            //         method: "DELETE",
-            //         data: {_token: '{{ csrf_token() }}', task_id: task_id},
-            //         success: function (response) {
-            //             window.location.reload();
-            //         }
-            //     });
-            // }
-
         });
 
 
@@ -2194,9 +2170,30 @@
                     $('#task' + task_id).css('display', 'none');
                 }
             });
-
-
         });
+
+        $(".accept_task").click(function (e) {
+            alert('test') ;
+            var task_id = $("#task_id").val();
+            $.ajax({
+                url: '{{route('admin.tasks.accept_task')}}',
+                method: "POST",
+                data: {_token: '{{ csrf_token() }}', task_id: task_id},
+                success: function (response) {
+                    //window.location.reload();
+                    $('.sidebar').css({'width': '0'});
+                    $('.sidebar-model').css({'width': '0'});
+                    $('.overlay').css('display', 'none');
+                    $('#task' + task_id).css('display', 'none');
+                }
+            });
+        });
+
+
+
+
+
+
 
         $(".uncomplete_task").click(function (e) {
             var task_id = $("#task_id").val();
