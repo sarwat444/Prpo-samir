@@ -3630,12 +3630,14 @@ a.buttons:not(:last-child):nth-last-child(4) {
     color: #000000;
 }
 /*Add Tag */
+
 #add_user  input ,
 #create-category input ,
 #create-category textarea
 {
     border: 1px solid transparent !important;
 }
+
 #add_user  input:hover ,
 #create-category input:hover ,
 #create-category textarea:hover
@@ -3840,4 +3842,38 @@ a.buttons:not(:last-child):nth-last-child(4) {
 .idea .middle-content {
     margin-top: 37px !important;
     margin-bottom: 70px !important;
+}
+.error-message
+{
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+.toggle-password i{
+    font-size: 16px;
+    float: right;
+    margin-top: -26px;
+    margin-right: 29px;
+}
+
+.alert-messages .alert-success {
+    width: 400px;
+    border-left: 3px solid green;
+    margin-top: 0px;
+    position: fixed;
+    z-index: 1111;
+    margin-left: 75px;
+}
+.alert-messages .alert-danger {
+    width: 400px;
+    margin-top: 0px;
+    position: fixed;
+    z-index: 1111;
+    margin-left: 75px;
+}
+.is-invalid {
+    border-color: #dc3545; /* Red */
+}
+
+.is-valid {
+    border-color: #28a745; /* Green */
 }

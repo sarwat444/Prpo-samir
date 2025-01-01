@@ -204,7 +204,29 @@ return [
     'Start Date' => 'Start Date' ,
     'End Date' => 'End Date' ,
     'accept_task' => 'active' ,
-    'pending_posts' => 'pending posts'
+    'pending_posts' => 'pending posts' ,
+
+    'First name is required.' => "First name is required." ,
+    "Enter a valid email address." =>"Enter a valid email address.",
+    "Email is required." =>"Email is required.",
+    "Passwords do not match." =>"Passwords do not match.",
+    "Image upload is required." =>"Image upload is required.",
+    "Last name is required." => "Last name is required." ,
+    "Password is required." => "Password is required." ,
+    'User name is required.' => "User name is required",
+    "First name must not contain special characters." => "First name must not contain special characters or numbers.",
+    "Last name must not contain special characters." => "Last name must not contain special characters.",
+    "User name must not contain special characters." => "User name must not contain special characters.",
+    "Category Name is required." => "Category Name is required." ,
+    "Tag name is required." => "Tag name is required." ,
+    "At least one category must be selected." => "At least one category must be selected." ,
+    "Tag name must only contain letters, numbers, and spaces." => "Tag name must only contain letters, numbers, and spaces." ,
+    "Task Title must not exceed 60 characters." => "Task Title must not exceed 60 characters." ,
+    "Task Title must not contain HTML tags." => "Task Title must not contain HTML tags." ,
+    "Task Title is required." => "Task Title is required." ,
+    "Description is required." => "Description is required." ,
+    "Please select a category." => "Please select a category." ,
+    "Please select a responsible person." => "Please select a responsible person." ,
 ];
 
 
