@@ -842,14 +842,17 @@ margin-top: 26px;
     border-radius: 4px;
     box-shadow: none;
     background-color: #fff;
-    border: 1px solid #cccccc26;
+    border: 1px solid #cccccc26 !important;
     color: #6f6f6f !important;
-    font-size: 13px;
     padding-right: 0;
     width: 100%;
     margin-bottom: 10px;
     font-size: 12px ;
 
+}
+.idea .middle-content h3
+{
+    padding-top: 30px !important;
 }
 .sidebar-model #create-category  label
 {
@@ -984,7 +987,6 @@ margin-top: 26px;
 {
     background-color: #fff !important;
     height: 37px;
-    margin-top: 7px;
     width: 100%;
     margin-bottom:17px;
     height: 19px;
@@ -3834,4 +3836,8 @@ a.buttons:not(:last-child):nth-last-child(4) {
     font-size: 11px;
     border: 1px dashed #eee;
     margin-bottom: 13px;
+}
+.idea .middle-content {
+    margin-top: 37px !important;
+    margin-bottom: 70px !important;
 }

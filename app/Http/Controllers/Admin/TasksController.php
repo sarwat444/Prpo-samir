@@ -546,8 +546,24 @@ class TasksController extends Controller
     public function showIdeaTaskData(Request $request)
     {
         $id = $request->id;
-        $task = Task::find($id);
+        $task = Task::where('id', $id)
+            ->with(['subtasks' => function ($query) {
+                $query->where('subtask_added_by', auth()->user()->id);
+            }])
+            ->first();
         return view('admin.tasks.ideen_create', ['task' => $task]);
+    }
+
+    public function viewTaskData(Request $request)
+    {
+        $id = $request->id;
+        $task = Task::where('id', $id)
+            ->with(['un_completed_subtasks' => function ($query) {
+                $query->where('subtask_added_by', auth()->user()->id);
+            }])
+            ->first();
+
+        return view('admin.tasks.ideen_update', ['task' => $task]);
     }
 
     public function updateIdeaTask(Request $request, $id)
@@ -563,11 +579,9 @@ class TasksController extends Controller
 
         $task = Task::findOrFail($id);
 
-        $task->update([
-            'task_title' => $request->task_title,
-            'task_due_date' => $formattedDate, // Use the formatted date
-            'task_desc' => $request->task_desc,
-        ]);
+        $new_subtask = new SubTask() ;
+        $new_subtask->subtask_title = $request->task_title;
+        $new_subtask->subtask_due_date = $request->task_due_date;
 
         return redirect()->route('admin.dashboard')->with('success', 'Idea Updated Successfully');
     }
@@ -731,12 +745,25 @@ class TasksController extends Controller
 
     public function usertasks(Request $request)
     {
-        // Data Displyed on admin Tasks
+        // Data Displayed on Admin Tasks
         $status = 0;
-        $user_subtasks = SubTask::where('account_id', auth()->user()->account_id)->where('subtask_user_id', Auth::user()->id)->where('subtask_status',0)->orderBy('suborder' ,  'DESC')->get();
-        $users = User::where('account_id', auth()->user()->account_id)->where('deleted', 0 )->where('status' , 0)->get();
-        return view('admin.tasks.admintasks')->with(compact('user_subtasks', 'users', 'status'));
+        $accountId = auth()->user()->account_id;
+        $userId = auth()->user()->id;
+
+        $user_subtasks = SubTask::where('account_id', $accountId)
+            ->where('subtask_user_id', $userId)
+            ->where('subtask_status', 0)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $users = User::where('account_id', $accountId)
+            ->where('deleted', 0)
+            ->where('status', 0)
+            ->get();
+
+        return view('admin.tasks.admintasks', compact('user_subtasks', 'users', 'status'));
     }
+
     public function orderadminsubtasks(Request $request)
     {
          $data        =     $request->slecteddata ;

@@ -152,28 +152,25 @@
                 <!--end Success Messages -->
                 <div class="row sortable-cards" id="shuffle">
                     <!--Start Ideas Cards -->
-                    @if(!empty($ideas))
-                        @foreach($ideas as $task)
+                    @if(!empty($idea))
                             <div class="col-md-3  sortable-divs mix ui-state-default"
-                                 data-id="{{$task->id}}" id="task{{$task->id}}">
-                                <div class="card sort  @if(!empty($task->type == 1 )) idea  @endif">
+                                 data-id="{{$idea->id}}" id="task{{$idea->id}}">
+                                <div class="card sort  @if(!empty($idea->type == 1 )) idea  @endif">
                                     <div class="card-contents">
                                         <div class="middle-content">
-                                            <h3>{!!substr($task->task_title,0,70)!!}</h3>
+                                            <h3>{!!substr($idea->task_title,0,70)!!}</h3>
                                             <br>
                                             <div class="members">
-                                                <ul>
-                                                    <button class="btn btn-default btn-idea-popup" data-id="{{$task->id}}"><i class="fa fa-plus"></i></button>
-                                                </ul>
+                                                    <button class="btn btn-default btn-idea-popup" data-id="{{$idea->id}}"><i class="fa fa-plus"></i></button>
                                             </div>
                                         </div>
                                         <div class="button-bar">
                                             <div class="row">
 
                                                 <div class="col-md-6">
-                                                    @if(!empty($task->added_by))
-                                                        @if(file_exists(public_path().'/assets/images/users/'.$task->added_by->image))
-                                                            <img src="{{asset('public/assets/images/users/'.$task->added_by->image)}}" alt="member">
+                                                    @if(!empty($idea->added_by))
+                                                        @if(file_exists(public_path().'/assets/images/users/'.$idea->added_by->image))
+                                                            <img src="{{asset('public/assets/images/users/'.$idea->added_by->image)}}" alt="member">
                                                         @else
                                                             <img src="https://source.unsplash.com/user/c_v_r">
                                                         @endif
@@ -181,14 +178,13 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p> {{ date('d.m.Y', strtotime($task->task_due_date))}} </p>
+                                                    <p> </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
                     @endif
                     <!--End Ideas Cards -->
                     @if(count($categories) > 0)

@@ -12,9 +12,8 @@
 <div class="row layout-top-spacing">
     <div id="basic" class="col-lg-12 layout-spacing">
         <div class="statbox widget box box-shadow">
-            <div class="widget-header">
+            <div class="widget-header"></div>
 
-            </div>
             <form class="create_idea" id="create-category"
                   action="{{ isset($task) ? route('admin.ides.update', $task->id) : route('admin.ides.store') }}"
                   method="POST" enctype="multipart/form-data">
@@ -24,28 +23,28 @@
                 @endif
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-3">
-                                <label>{{__('messages.Titel')}}</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="task_title"
-                                       value="{{ isset($task) ? $task->task_title : '' }}"
-                                       class="target form-control popup_title" data-name="task_title">
-                                <input type="hidden" name="task_added_by" value="{{ auth()->user()->id }}">
-                                <span class="text-danger error-message" id="category_name_error"></span>
-                            </div>
                             <div class="col-md-1">
                                 <button id="dismiss" class="dismiss" type="button">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
+                                <label>{{__('messages.Titel')}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea rows="5" type="text" name="task_title" placeholder="{{__('messages.Titel')}}" value="{{ isset($task) ? $task->task_title : '' }}" class="target form-control popup_title" data-name="task_title"></textarea>
+                                <input type="hidden" name="task_added_by" value="{{ auth()->user()->id }}">
+                                <span class="text-danger error-message" id="category_name_error"></span>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
                                 <label class="control-label">{{__('messages.dead_line')}}</label>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <input type="text"
                                        value="{{ isset($task) ? date('d.m.Y', strtotime($task->task_due_date)) : '' }}"
                                        class="dateTimeFlatpickr form-control flatpickr flatpickr-input target"
@@ -54,15 +53,6 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label class="control-label">{{__('messages.Beschreibung')}}</label>
-                            </div>
-                            <div class="col-md-7">
-                                 <textarea class="form-control target txta" data-name="task_desc" name="task_desc" rows="8" style="margin-top:5px !important;">{{ isset($task) ? $task->task_desc : '' }}</textarea>
-                                 <span class="text-danger error-message" id="description_error"></span>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="form-group">

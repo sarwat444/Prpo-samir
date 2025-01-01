@@ -660,8 +660,8 @@
             <ul>
 
                 <li class="nav-item myposts_icon">
-                    <a class="nav-link" href="{{route('admin.tasks.pending_posts')}}" target="_blank" role="button" aria-expanded="false">
-                        <i class="fa-solid fa-boxes-stacked" style="color:#fff;background-color:#e2a03f;"></i>
+                    <a  class="nav-link" href="{{route('admin.tasks.pending_posts')}}" target="_blank" role="button" aria-expanded="false">
+                        <i class="fa-solid fa-boxes-stacked" style="color:#fff;background-color:#e2a03f;display: none"></i>
                         <span class="tooltip">{{__('messages.pending_posts')}}</span>
                     </a>
                 </li>
@@ -752,9 +752,7 @@
           <i class="fa fa-solid fa-tag"></i>
   </a>
 
- <a href="#" data-type="ideen_create" class="buttons" data-bs-toggle="tooltip" data-bs-placement="right" title="Ideen" >
-      <i class="fa fa-solid fa-bookmark"></i>
-  </a>
+
 
   <a href="#" data-type="project_create"  class="buttons" data-bs-toggle="tooltip" data-bs-placement="right" title="Task">
           <i class="fa fa-solid fa-list"></i>
@@ -762,6 +760,10 @@
     <a href="#" data-type="task_create" class="buttons" data-bs-toggle="tooltip" data-bs-placement="right" title="Post-it">
           <i class="fa-solid fa-clipboard"></i>
   </a>
+        <a href="#" data-type="ideen_create" class="buttons" data-bs-toggle="tooltip" data-bs-placement="right" title="Ideen" >
+            <i class="fa fa-solid fa-bookmark"></i>
+        </a>
+
   <a href="#" class="buttons main-button" data-bs-toggle="tooltip" data-bs-placement="right" title="Share" >
           <i class="fa fa-times"></i>
           <i class="fa fa-solid fa-plus"></i>

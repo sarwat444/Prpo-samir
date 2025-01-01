@@ -50,7 +50,7 @@ class DashboardController extends Controller
         session()->forget('catt_id');
         session()->forget('tagg_id');
 
-        $ideas = Task::where(['type' =>  1 , 'task_added_by' =>  auth()->user()->id])->get() ;
+        $idea = Task::where(['type' =>  1])->first() ;
 
         if (auth()->user()->role != 3) {
 
@@ -98,7 +98,7 @@ class DashboardController extends Controller
 
             //dd($categories);
             $users = User::where('account_id', auth()->user()->account_id)->where('role', '!=', 3)->where('status', 0)->where('deleted', 0)->orderBy('user_piriority', 'desc')->get();
-            return view('admin.dashboard', compact('categories', 'title', 'status', 'users', 'invited_users' ,'ideas'));
+            return view('admin.dashboard', compact('categories', 'title', 'status', 'users', 'invited_users' ,'idea'));
 
         } else {
 
@@ -114,7 +114,7 @@ class DashboardController extends Controller
                 $guestcats = [];
             }
             // dd($tasks);
-            return view('admin.guest_dashboard', compact('tasks', 'title', 'guestcats'));
+            return view('admin.guest_dashboard', compact('tasks', 'title', 'guestcats' , 'idea'));
         }
     }
 

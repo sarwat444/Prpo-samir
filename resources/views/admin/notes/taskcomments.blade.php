@@ -1,3 +1,6 @@
+
+<link href="{{asset('public/assets/admin/assets2/css/fm.selectator.jquery.css')}}" rel="stylesheet">
+<script src="{{asset('public/assets/admin/assets2/js/fm.selectator.jquery.js')}}" ></script>
 <div class="TaskCommentspage">
         <div class="row">
             <div class="col-md-10">

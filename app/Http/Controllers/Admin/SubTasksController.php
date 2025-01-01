@@ -903,37 +903,29 @@ class SubTasksController extends Controller
 
     public function store_ideas(Request $request)
     {
-        // Manually create a validator instance
         $validator = Validator::make($request->all(), [
             'task_title' => 'required|string|max:255',
             'task_added_by' => 'required|integer|exists:users,id',
             'task_due_date' => 'required|date_format:d.m.Y',
-            'task_desc' => 'required|string|max:1000',
         ]);
 
-        // Check if validation fails
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator) // Pass validation errors to the session
                 ->withInput(); // Retain old input data
         }
 
-        // If validation passes, retrieve validated data
         $validatedData = $validator->validated();
 
-        // Debug data if needed
-        // dd($validatedData);
-
         // Create a new Task instance
-        $task = new Task();
-        $task->task_title = $validatedData['task_title'];
-        $task->task_added_by = $validatedData['task_added_by'];
-        $task->task_due_date = \Carbon\Carbon::createFromFormat('d.m.Y', $validatedData['task_due_date'])->format('Y-m-d');
-        $task->task_desc = $validatedData['task_desc'];
-        $task->type = 1; // This indicates an "idea post"
+
+        $task = new SubTask();
+        $task->subtask_title = $validatedData['task_title'];
+        $task->subtask_added_by = $validatedData['task_added_by'];
+        $task->subtask_due_date = \Carbon\Carbon::createFromFormat('d.m.Y', $validatedData['task_due_date'])->format('Y-m-d');
+        $task->task_id = 1121 ; //add to ideas task
         $task->save();
 
-        // Redirect to the dashboard with a success message
         return redirect()->route('admin.dashboard')->with('success', 'Post has been successfully added.');
     }
 

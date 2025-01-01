@@ -250,6 +250,16 @@ body
     max-height :75px;
     text-shadow: #070a08 1px 2px 10px;
 }
+#sidebarMenu .select2-container--default .select2-selection--single
+{
+    margin-top:15px !important;
+}
+.drop-zone:hover
+{
+    color: #013c60;
+    cursor: pointer;
+}
+.subtasks_users
 .card .responsible
 {
     width:100%;
@@ -824,7 +834,7 @@ margin-top: 26px;
     border-radius: 4px;
     box-shadow: none;
     background-color: #fff;
-    border: 1 px solid #cccccc26;
+    border: 1px solid #cccccc26 !important;
     color: #6f6f6f !important;
     font-size: 13px;
     padding-right: 0;
@@ -2660,4 +2670,8 @@ Custom css
 .headercontainer
 {
     margin-left: 37px !important;
+}
+.idea .middle-content {
+    margin-top: 37px !important;
+    margin-bottom: 70px !important;
 }

@@ -64,7 +64,23 @@
 </script>
 <script src="{{asset('public/assets/admin/assets2/js/sweetalert.min.js')}}"></script>
 <style>
-
+    .btn-primary:hover {
+        color: #0d4263;
+        background-color: #eee;
+        border: 0px !important;
+        text-align: center;
+    }
+    .task_comments_count
+    {
+        margin-left:15px;
+    }
+    .calender
+    {
+        height:35px;
+    }
+    #sidebarMenu .task-details li img {
+        margin-top: 8px;
+    }
     .show-selected-images
     {
         display:flex ;
@@ -1660,12 +1676,12 @@
         border-radius: 50%!important;
         border: 2px solid #ccc;
     }
-     .task-container .desc
-     {
-         padding: 0 !important;
-         margin: 0 !important;
-         margin-left: 10px !important;
-     }
+    .task-container .desc
+    {
+        padding: 0 !important;
+        margin: 0 !important;
+        margin-left: 10px !important;
+    }
 
 
     /** =====================
@@ -1697,35 +1713,36 @@
                     <div class="task-data">
                         <div class="task-details">
                             <div class="row">
-                                <div class="col-md-9">
-                                        @if($task->task_status == 0 || $task->task_status == 2)
-                                            <a class="complete_task btn-complete btn btn-default"><i
-                                                    class="fa fa-check-circle"></i> {{__('messages.mark_complete')}}
-                                            </a>
-                                        @else
-                                            <a class="uncomplete_task btn-complete btn btn-success"><i
-                                                    class="fa fa-check-circle"></i> {{__('messages.mark_un_complete')}}
+
+                                @if($task->type != 1 )
+                                 <div class="col-md-9">
+                                    @if($task->task_status == 0 || $task->task_status == 2)
+                                        <a class="complete_task btn-complete btn btn-default"><i
+                                                class="fa fa-check-circle"></i> {{__('messages.mark_complete')}}
+                                        </a>
+                                    @else
+                                        <a class="uncomplete_task btn-complete btn btn-success"><i
+                                                class="fa fa-check-circle"></i> {{__('messages.mark_un_complete')}}
+                                        </a>
+                                    @endif
+                                    <div class="action_buttons">
+                                        @if($task->accepted  == 0)
+                                            <a class="accept_task  btn btn-primary"><i class="fa fa-check-circle"></i> {{__('messages.accept_task')}}
                                             </a>
                                         @endif
-                                        <div class="action_buttons">
-                                            @if($task->accepted  == 0)
-                                                <a class="accept_task  btn btn-primary"><i class="fa fa-check-circle"></i> {{__('messages.accept_task')}}
-                                                </a>
-                                            @endif
-                                            @if($task->task_status == 0 || $task->task_status == 1)
-                                                <button class="remove-task btnn-remove btn btn-danger"><i
-                                                        class="fa fa-trash"></i> {{__('messages.delete')}}
-                                                </button>
-                                            @else
-                                                <button class="unremove-task  btnn-remove btn btn-danger"><i
-                                                        class="fa fa-trash"></i>
-                                                    {{__('messages.restore')}}
-                                                </button>
-                                            @endif
+                                        @if($task->task_status == 0 || $task->task_status == 1)
+                                            <button class="remove-task btnn-remove btn btn-danger"><i
+                                                    class="fa fa-trash"></i> {{__('messages.delete')}}
+                                            </button>
+                                        @else
+                                            <button class="unremove-task  btnn-remove btn btn-danger"><i
+                                                    class="fa fa-trash"></i>
+                                                {{__('messages.restore')}}
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
-
-
+                                @endif
 
                                 <div class="col-md-1">
                                     <button id="dismiss" class="dismiss" type="button">
@@ -1733,7 +1750,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-10">
                                     <div class="main_tasks_header">
                                         <input type="text" name="task_title" value="{!! $task->task_title !!}"
@@ -1742,234 +1759,10 @@
                                 </div>
                             </div>
 
-                            <!--Check That Not Idea Post -->
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label class="control-label">{{__('messages.responsible')}}</label>
-                                </div>
-
-                                <div class="col-md-7">
-                                    <select name="task_responsible" data-name="task_responsible" style="width:100%"
-                                            class="form-control  target task_responsible ">
-                                        @foreach ($users as $key => $user)
-                                            <option value="{{$user->id}}" @if($task->task_responsible == $user->id ) selected @endif > {{$user->user_name }} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                            </div>
-
-                            <!--Start Team Memers -->
-                            <div class="row mb-2" >
-                                <div class="col-md-2">
-                                    <lable class="control-label">{{__('messages.team_members')}}</lable>
-                                </div>
-                                <div class="col-md-7 user_selection_plugin">
-                                    <!-- Create a select element with the "select2" class -->
-                                    @php
-                                        $team_ids = \App\Models\TaskTeam::where('task_id', $task->id)->pluck('user_id');
-                                        $team_ids2 = json_decode($team_ids);
-                                    @endphp
-
-                                    <select id="userSelect"  class="target form-control" multiple name="teams_id[]" data-name="teams_id">
-                                        @if (!empty($users3))
-                                            @foreach ($users3 as $key => $user3)
-                                                <option value="{{ $user3->id }}"
-                                                        @if (!empty($user3->image))
-                                                            data-image="{{ asset('public/assets/images/users/'.$user3->image) }}"
-                                                        @else
-                                                            data-image="https://pri-po.com/public/assets/images/default.png"
-                                                        @endif
-                                                        @if (in_array($user3->id , $team_ids2)) selected @endif
-                                                >
-                                                    {{ $user3->user_name }}
-                                                </option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                </div>
-                            </div>
-                            <!--End Team Memers -->
-
-                            <!--Start Visitor-->
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <lable class="control-label">{{__('messages.Besucher')}}</lable>
-                                </div>
-                                <div class="col-md-7 userguest_plugin">
-                                    <select id="userguest"  name="guests_id[]" class="target userSelect form-control" multiple data-name="guests_id">
-                                        @php
-                                            $guest_ids = \App\Models\TaskGuest::where('task_id' , $task->id)->pluck('user_id');
-                                            $guest_ids2 = json_decode($guest_ids);
-                                        @endphp
-                                        @if(!empty($users2))
-                                            @foreach ($users2 as $key => $user2)
-                                                <option id="{{$key}}" value="{{$user2->id}}"
-                                                        @if(!empty($user2->image))
-                                                            data-image="{{asset('public/assets/images/users/'.$user2->image)}}"
-                                                        @else
-                                                            data-image="{{asset('public/assets/images/default.png')}}"
-                                                        @endif
-
-                                                        @if(in_array($user2->id , $guest_ids2)) selected @endif >    {{$user2->user_name}}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-
-                                </div>
-                            </div>
-                            <!--Start Visitor-->
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <lable class="control-label">{{__('messages.dead_line')}}</lable>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="datepicker">
-                                        <input type="text" value="{{date('d.m.Y', strtotime($task->task_due_date))}}"
-                                               class="dateTimeFlatpickr form-control flatpickr flatpickr-input target"
-                                               data-name="task_due_date" name="task_due_date" placeholder="DeadLine">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <lable class="control-label">{{__('messages.department')}}</lable>
-                                </div>
-                                <div class="col-md-7">
-                                    <select name="task_category_id" id="task_category_one" data-task-id="{{$task->id}}"
-                                            class=" form-control target Fachbereich" data-name="task_category_id" >
-                                        @foreach ($cats as $key => $cat)
-                                            <option value="{{$cat->id}}"
-                                                    @if($task->task_category_id == $cat->id ) selected @endif > {{$cat->category_name }} </option>
-                                        @endforeach
-                                    </select>
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <lable class="control-label">{{__('messages.department')}}2</lable>
-                                </div>
-                                <div class="col-md-7">
-                                    <select name="task_category_id_two" id="task_category_two"
-                                            class=" form-control target Fachbereich2"
-                                            data-name="task_category_id_two"
-                                            placeholder="{{__('messages.department')}}">
-                                        <option value=""> Fachbereich2 wählen</option>
-                                        @foreach ($cats as $key => $cat)
-                                            <option value="{{$cat->id}}"
-                                                    @if($task->task_category_id_two == $cat->id ) selected @endif > {{$cat->category_name }} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label class="control-label" style="font-size: 12px !important;
-                                                                         color: #000 !important;
-                                                                         font-weight: initial  !important;
-                                                                         ">{{__('messages.under_category')}}</label>
-                                </div>
-                                <div class="col-md-7">
-                                    <select id="categoryselect" name="tags_id[]" class="target" multiple data-name="tags_id">
-                                        @php
-                                            $tag_ids = \App\Models\TaskTag::where('task_id' , $task->id)->pluck('tag_id');
-                                            $tags_ids2 = json_decode($tag_ids);
-                                        @endphp
-                                        @if(!empty($tags))
-                                            @foreach ($tags as $key => $tag)
-                                                @php $tagg = \App\Models\Tag::where('tag_name' , $tag->tag_name)->first();  @endphp
-                                                <option id="{{$key}}" value="{{$tagg->id}}"
-                                                        @if(in_array($tagg->id , $tags_ids2)) selected @endif >    {{$tag->tag_name}}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <lable class="control-label">{{__('messages.desc')}}</lable>
-                                </div>
-                                <div class="col-md-7">
-                                   <textarea class="form-control target txta" data-name="task_desc" style="margin-top:5px !important;">{{$task->task_desc}}</textarea>
-                                </div>
-
-
-
-
-
-                            </div>
-                            <!-- Upload Post Image -->
-                            <div class="form-group mt-3">
-                                <form method="POST" action="{{ route('tasks.upload_post_image') }}"
-                                      enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <lable class="control-label">{{__('messages.post image')}}</lable>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class=" fileContainer" style="margin:0;">
-                                                <input type="file" id="imageUpload-1" name="image" class="image-upload"
-                                                       required>
-                                                <label for="imageUpload-1" class="white-button"><span><i
-                                                            class="far fa-image"></i> Upload Image</span></label>
-                                            </div>
-                                            <input type="hidden" name="task_id" value="{{$task->id}}">
-                                            <div id="imageUpload-1-preview" class="image-preview"
-                                                 @if(!empty($task->image))
-                                                     style="
-                                                                   background-image:url({{asset('uploads/images/compressed/'.$task->image)}}) ;
-                                                                   display: block !important;
-                                                                   background-size: cover;
-                                                                   background-position: center center;
-                                                                  "
-                                                @endif
-                                            >
-                                                <div class="image-preview-hover">
-                                                    <button type="button" class="remove-image-privew"
-                                                            data-id="{{$task->id}}"><i class="fas fa-times"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary btn-sm upload_post_image"><i
-                                                    class="fa fa-upload"></i> {{__('messages.upload')}}</button>
-                                        </div>
-
-                                    </div>
-
-                                </form>
-                            </div>
-                            <!--End Upload  Post Image -->
-
                             <div class="subtasks-header">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <i class="bi bi-calendar2-plus"></i> {{__('messages.subtasks')}}
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div
-                                            class="uncompleted_count">{{$task->subtasks->count() - $task->completed_subtasks->count() }}</div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input cb-value " type="checkbox">
-                                        </div>
-                                        <div class="completed_count">{{$task->completed_subtasks->count()}} / <span
-                                                class="tested">{{$task->testedtasks->count()}}</span></div>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <!--
-                                                <button type="button" class="btn btn-sm btn-primary relodebutton" onclick="rebuild_popup({{$task->id}})">
-                                                    <i class="bi bi-arrow-clockwise"></i>
-                                                </button>
-                                                -->
                                     </div>
                                 </div>
                             </div>
@@ -1980,9 +1773,8 @@
                                     </div>
 
                                     <div class="container">
-                                        <ul class="todo box-shadow">
+                                        <ul class="todo box-shadow" style="width:100% !important;">
                                             <li class="title">
-
                                                 <span class="percentage"></span>
                                             </li>
                                             <div class="task-container" id="shuffle2">
@@ -2084,36 +1876,14 @@
                                                                 </div>
                                                             </div>
                                                             <!--New Select Box v2 -->
-                                                            <select class="mySelect2 subtasks_users"
-                                                                    style="width: 300px;" name="TaskResponsiple"
-                                                                    data-id="{{$subtask->id}}">
-                                                                <option value="">Select an option</option>
-                                                                @foreach($users as $user)
-                                                                    <option value="{{$user->id}}"
-                                                                            @if(!empty($user->image))
-                                                                                data-image="{{asset('public/assets/images/users/'.$user->image)}}"
-                                                                            @else
-                                                                                data-image="https://pri-po.com/public/assets/images/default.png"
-                                                                            @endif
-                                                                            @if($subtask->subtask_user_id == $user->id ) selected="selected" @endif
-                                                                    >{{$user->user_name}}</option>
-                                                                @endforeach
-                                                            </select>
                                                             <input type="hidden" value="{{$subtask->id}}" class="testinput" data-id="{{$subtask->id}}"/>
-                                                            <button style="width: 45px;display: flex;" class="btn btn-icon btn-primary TaskTitle task_comments_count" data-id="{{$subtask->id}}">
+                                                            <button class="btn btn-icon btn-primary TaskTitle task_comments_count" data-id="{{$subtask->id}}">
                                                                 <i class="fa fa-comments"></i>
-                                                                <span class="comments-count" style="color: #ec6630;margin-right: 10px; font-size: 12px;    margin-left: 10px;">{{$subtask->comments->count() }}</span>
+                                                                <span class="comments-count" style="color: #ec6630;margin-right: 10px; font-size: 12px;">{{$subtask->comments->count() }}</span>
                                                             </button>
                                                         </li>
                                                     @endforeach
                                                 @endif
-                                            </div>
-                                            <li class="create">
-                                                <i class="material-icons unselectable">add</i>
-                                                <input class="new-task" contenteditable="true"
-                                                       placeholder="{{__('messages.subtasks')}}">
-                                            </li>
-                                            <li class="bottom"></li>
                                         </ul>
                                     </div>
 
@@ -2240,36 +2010,12 @@
                                                             </div>
 
 
-                                                            <select class="slick{{$subtask->id}} task_resp"
-                                                                    is="ms-dropdown" data-enable-auto-filter="true"
-                                                                    data-id="{{$subtask->id}}"
-                                                                    name="TaskResponsiple"
-                                                                    style="height: 30px ; width:89px !important; "
-                                                                    data-enable-auto-filter="true">
-                                                                <option
-                                                                    data-imagesrc="{{asset('public/assets/images/person.png')}}">
-                                                                    Select
-                                                                </option>
-                                                                @foreach($users as $user)
-                                                                    <option value="{{$user->id}}"
-                                                                            @if(!empty($user2->image))
-                                                                                data-imagesrc="{{asset('public/assets/images/users/'.$user2->image)}}"
-                                                                            @else
-                                                                                data-imagesrc="{{asset('public/assets/images/default.png')}}"
-                                                                            @endif
-
-                                                                            @if($subtask->subtask_user_id == $user->id ) selected="selected" @endif> {{$user->user_name}}</option>
-                                                                @endforeach
-                                                            </select>
                                                             <input type="hidden" value="{{$subtask->id}}"
                                                                    class="testinput"
                                                                    data-id="{{$subtask->id}}"/>
 
 
-                                                            <button style="width: 45px;display: flex;" class="btn btn-icon btn-primary TaskTitle task_comments_count" data-id="{{$subtask->id}}">
-                                                                <i class="fa fa-comments"></i>
-                                                                <span class="comments-count" style="color: #ec6630;margin-right: 10px; font-size: 12px;margin-left: 10px;">{{$subtask->comments->count() }}</span>
-                                                            </button>
+                                                            <button class="btn btn-icon btn-primary TaskTitle task_comments_count" data-id="{{$subtask->id}}"><i class="fa fa-comments"></i></button>
 
                                                         </li>
                                                     @endforeach
@@ -2294,19 +2040,6 @@
                                         <input id="hidden_subtask" type="hidden" name="subtask_id"/>
                                         <textarea id="commentbox" rows="5" class="form-control" placeholder="{{__('messages.enter_comment')}}..." required></textarea>
                                         <div id="commentoutput" style="display: none"></div>
-
-                                        <select id="commentTag" name="tags[]" class="userTags select2" multiple
-                                                data-name="tags[]">
-                                            @foreach($users_gests as $user)
-                                                <option id="{{$user->id}}" value="{{$user->id}}"
-                                                        @if(!empty($user->image))
-                                                            data-image="{{asset('public/assets/images/users/'.$user->image)}}"
-                                                        @else
-                                                            data-image="https://pri-po.com/public/assets/images/default.png"
-                                                    @endif
-                                                > {{$user->first_name}}</option>
-                                            @endforeach
-                                        </select>
 
                                         <div id="popup1" class="popup">
                                             <div class="drop-zone-container">
@@ -2900,7 +2633,7 @@
 
                             var ic = 1;
                             var xv = 1;
-                            var xx = Number('{{$last_subtask_id}}');
+                            var xx = 1;
 
                             <?php $SD = 1; ?>
                             $(document).ready(function () {
@@ -2983,28 +2716,6 @@
 
                                     // Test Responsible
 
-
-                                    let responsiple = document.createElement("select");
-                                    responsiple.setAttribute('data-id', (xx + ic));
-                                    responsiple.className = "mySelect2 subtasks_users custom_select";
-                                    responsiple.name = "TaskResponsiple";
-
-                                    let users2 = [];
-                                    users2.push("<option>Select</option>");
-
-                                    <?php
-                                    $url = url('/');
-                                    $ld = $last_subtask_id + $SD;
-                                    foreach ($users as $user) { ?>
-                                    users2.push("<?php echo "<option value='$user->id' data-image= '$url/public/assets/images/users/$user->image'> $user->user_name</option>" ?>");
-                                    <?php } ?>
-
-                                        responsiple.innerHTML = users2.join("");
-
-                                    $(".custom_select").select2({
-                                        templateResult: formatOption,
-                                        templateSelection: formatSelection
-                                    });
 
                                     function formatOption(option) {
                                         if (!option.id) {
@@ -4544,7 +4255,6 @@
 
             formData.append("subtask_id", subtask_id);
             formData.append("comment", comment);
-            formData.append("tags", tags.join(","));
             formData.append("task_id", task_id);
             formData.append("_token", "{{ csrf_token() }}");
 

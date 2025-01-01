@@ -196,25 +196,8 @@ return [
     'Select Range Date' => 'Wählen Sie Bereichsdatum aus' ,
     'Start Date' => 'Startdatum' ,
     'End Date' => 'Endtermin' ,
-
-    'First name is required.' => "Der Vorname ist erforderlich.",
-    "Enter a valid email address." => "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-    "Email is required." => "Die E-Mail-Adresse ist erforderlich.",
-    "Passwords do not match." => "Die Passwörter stimmen nicht überein.",
-    "Image upload is required." => "Das Hochladen eines Bildes ist erforderlich.",
-    "Last name is required." => "Der Nachname ist erforderlich.",
-    "Password is required." => "Das Passwort ist erforderlich.",
-    'User name is required.' => "Der Benutzername ist erforderlich.",
-    "First name must not contain special characters." => "Der Vorname darf keine Sonderzeichen enthalten.",
-    "Last name must not contain special characters." => "Der Nachname darf keine Sonderzeichen enthalten.",
-    "User name must not contain special characters." => "Der Benutzername darf keine Sonderzeichen enthalten.",
-    "Category Name is required." => "Der Kategorienname ist erforderlich." ,
-    "Tag name is required." => "Tag-Name ist erforderlich.",
-    "At least one category must be selected." => "Mindestens eine Kategorie muss ausgewählt werden." ,
-    "Tag name must only contain letters, numbers, and spaces." => "Der Tag-Name darf nur Buchstaben, Zahlen und Leerzeichen enthalten." ,
-    "Task Title must not exceed 60 characters." => "Die Aufgabenüberschrift darf 60 Zeichen nicht überschreiten.",
-
-
+    'accept_task' => 'aktiv' ,
+    'pending_posts' => 'ausstehende Beiträge',
 
 
 ];

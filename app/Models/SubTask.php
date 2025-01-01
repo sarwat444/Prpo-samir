@@ -39,6 +39,10 @@ class SubTask extends Model
     {
       return $this->hasMany('App\Models\TaskHistory' ,'task_id','id');
     }
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment' ,'subtask_id','id');
+    }
 
 
 

@@ -64,6 +64,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
 
         Route::get('chat_rooms', [ChatController::class, 'chatRooms'])->name('chat_rooms');
         Route::post('room/chat', [ChatController::class, 'roomMessages'])->name('room_messages');
+        Route::post('room/show_room', [ChatController::class, 'show_room'])->name('show_room');
         Route::post('message', [ChatController::class, 'message'])->name('send_message');
         Route::post('craete_room', [ChatController::class, 'craete_room'])->name('craete_room');
         Route::post('check/chat/open', [ChatController::class, 'checkChatOpen'])->name('check_chat_open');
@@ -136,7 +137,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
         Route::post('/update/{id}', 'TasksController@update')->name('admin.tasks.update');
         Route::post('/delete/', 'TasksController@delete')->name('admin.tasks.delete');
         Route::get('/my_posts', 'TasksController@my_posts')->name('admin.tasks.my_posts');
-        Route::get('/accept_task', 'TasksController@accept_task')->name('admin.tasks.accept_task');
+        Route::post('/accept_task', 'TasksController@accept_task')->name('admin.tasks.accept_task');
         Route::post('/mark/complete', 'TasksController@markComplete')->name('admin.tasks.mark_complete');
         Route::post('/undelete/', 'TasksController@undelete')->name('admin.tasks.undelete');
         Route::post('/mark/uncomplete', 'TasksController@unmarkComplete')->name('admin.tasks.mark_uncomplete');
@@ -149,6 +150,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin'], function ()
         Route::post('/get/data', 'TasksController@showTaskData')->name('admin.get.task_data');
         Route::PUT('/update/idea/{id}', 'TasksController@updateIdeaTask')->name('admin.ides.update');
         Route::post('/get/idea/data', 'TasksController@showIdeaTaskData')->name('admin.get_idea_task_data');
+        Route::post('/get/viewTaskData', 'TasksController@viewTaskData')->name('admin.viewTaskData');
 
         Route::post('/create/view', 'TasksController@getCreateView')->name('admin.get.create_view');
         Route::post('/update/task/field', 'TasksController@updateTaskfield')->name('admin.tasks.update_field');
